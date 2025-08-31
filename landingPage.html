@@ -1,0 +1,2343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة الهبوط</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* تطبيق خط Cairo على جميع العناصر */
+    * {
+      font-family: 'Cairo', sans-serif !important;
+    }
+    
+    /* تطبيق خط Cairo على عناصر النموذج */
+    input, select, textarea, button, label, .form-control, .form-select {
+      font-family: 'Cairo', sans-serif !important;
+    }
+    
+    /* تطبيق خط Cairo على النصوص والعناوين */
+    p, span, div, a, .card-title, .card-text, .landing-page-title, .landing-page-description {
+      font-family: 'Cairo', sans-serif !important;
+    }
+    
+    /* تطبيق خط Cairo على جميع الأجهزة */
+    @media (max-width: 767px) {
+      * {
+        font-family: 'Cairo', sans-serif !important;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      * {
+        font-family: 'Cairo', sans-serif !important;
+      }
+    }
+    
+    body {
+      font-family: 'Cairo', sans-serif !important;
+      font-weight: 400;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Cairo', sans-serif !important;
+      font-weight: 600;
+    }
+    
+    .main-header, .main-footer {
+      background: #fff;
+      border-radius: 0 0 20px 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    
+    .main-header {
+      background: var(--header-color, #fff) !important;
+      color: #fff !important;
+    }
+    
+    .main-header h1, .main-header span {
+      color: #fff !important;
+    }
+    
+    /* تحسين البادينغ للشاشات الكبيرة */
+    @media (min-width: 992px) {
+      body {
+        padding-top: 5px;
+        padding-bottom: 10px;
+      }
+      
+      .container {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+      
+      .main-header {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      
+      .main-footer {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      
+      /* تحسين المسافات للصورة والفورم */
+      .landing-page-image,
+      .modern-form-container {
+        margin-left: 30px;
+        margin-right: 30px;
+      }
+    }
+    
+    /* تحسين حجم اللوجو والعنوان */
+    #store-logo {
+      transition: transform 0.2s ease;
+      width: 45px;
+      height: 45px;
+    }
+    
+    #store-logo:hover {
+      transform: scale(1.1);
+    }
+    
+    #store-name {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-size: 1.2rem;
+    }
+    
+    /* تحسين الهيدر للشاشات الكبيرة */
+    @media (min-width: 992px) {
+      .main-header {
+        padding: 12px 20px !important;
+      }
+      
+      #store-logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      #store-name {
+        font-size: 1.4rem;
+      }
+    }
+    
+    /* تحسين الهيدر للشاشات المتوسطة */
+    @media (max-width: 991px) and (min-width: 768px) {
+      .main-header {
+        padding: 10px 15px !important;
+      }
+      
+      #store-logo {
+        width: 45px;
+        height: 45px;
+      }
+      
+      #store-name {
+        font-size: 1.3rem;
+      }
+    }
+    
+    .main-footer {
+      font-size: 1rem;
+      color: var(--text-color, #555);
+    }
+    
+    /* تحسين البادينغ للشاشات المتوسطة */
+    @media (max-width: 991px) {
+      body {
+        padding-top: 10px;
+        padding-bottom: 15px;
+      }
+      
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      
+      .main-header {
+        margin-left: 15px;
+        margin-right: 15px;
+        border-radius: 15px;
+      }
+      
+      .main-footer {
+        margin-left: 15px;
+        margin-right: 15px;
+        border-radius: 15px;
+      }
+      
+      /* تحسين المسافات للصورة والفورم */
+      .landing-page-image,
+      .modern-form-container {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    }
+    
+    #store-logo {
+      transition: transform 0.2s ease;
+    }
+    
+    #store-logo:hover {
+      transform: scale(1.1);
+    }
+    
+    #store-name {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .main-footer {
+      font-size: 1rem;
+      color: var(--text-color, #555);
+    }
+    
+    .landing-page-image {
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      margin-top: 0rem; /* فراغ علوي بين الصورة والحافة */
+      padding: 15px;
+      background: #fff;
+    }
+    
+    /* تحسين البادينغ للصورة */
+    @media (min-width: 992px) {
+      .landing-page-image {
+        padding: 25px;
+        margin: 25px 20px;
+        border-radius: 20px;
+      }
+    }
+    
+    @media (max-width: 991px) {
+      .landing-page-image {
+        padding: 20px;
+        margin: 20px 15px;
+        border-radius: 18px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .landing-page-image {
+        width: 100% !important;   /* على الهاتف تكون 100% دائماً */
+        height: auto !important;
+        padding: 15px;
+        margin: 15px 10px;
+        border-radius: 15px;
+      }
+    }
+    
+    .btn-main {
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    
+    .btn-main:hover {
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      opacity: 0.9;
+    }
+    
+    .form-label {
+      font-weight: 500;
+      color: #007bff;
+    }
+    
+    .form-control, .form-select {
+      border-radius: 12px;
+    }
+    
+    .list-group-item {
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+    
+    .badge.bg-success, .badge.bg-danger {
+      font-size: 1rem;
+      padding: 0.5em 1em;
+      border-radius: 12px;
+    }
+    
+    .alert {
+      border-radius: 12px;
+    }
+    
+    /* تنسيق العروض الخاصة */
+    .special-offer {
+      background: linear-gradient(45deg, #ffeb3b, #fff176, #ffeb3b);
+      background-size: 200% 200%;
+      animation: offerShine 2s ease-in-out infinite;
+      border: 2px solid #f57f17;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 10px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* تنسيق الفورم الجديد */
+    .modern-form-container {
+      background: #fff;
+      border-radius: 15px;
+      padding: 18px;
+      margin: 15px 0;
+      border: 2px solid var(--btn-color, #007bff);
+      position: relative;
+      overflow: hidden;
+      max-width: 700px;         /* توسيط وتحديد عرض مناسب للفورم */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* تحسين البادينغ للفورم */
+    @media (min-width: 992px) {
+      .modern-form-container {
+        padding: 30px;
+        margin: 30px 20px;
+        border-radius: 20px;
+      }
+    }
+    
+    @media (max-width: 991px) {
+      .modern-form-container {
+        padding: 25px;
+        margin: 25px 15px;
+        border-radius: 18px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .modern-form-container {
+        padding: 20px;
+        margin: 20px 10px;
+        border-radius: 15px;
+      }
+    }
+    
+    .modern-form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, var(--btn-color, #007bff), var(--btn-color, #007bff));
+    }
+    
+    .form-section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .form-section-title::before {
+      content: '';
+      width: 3px;
+      height: 16px;
+      background: var(--btn-color, #007bff);
+      border-radius: 2px;
+    }
+    
+    .modern-input-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    
+    .modern-input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    
+    .modern-input-group .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .modern-input-group .input-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.8rem;
+      color: #666;
+      z-index: 2;
+    }
+    
+    .modern-input-group input,
+    .modern-input-group select {
+      width: 100%;
+      padding: 8px 8px 8px 30px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+    
+    .modern-input-group input:focus,
+    .modern-input-group select:focus {
+      outline: none;
+      border-color: var(--btn-color, #007bff);
+      background: #fff;
+    }
+    
+    .modern-radio-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .modern-radio-item {
+      flex: 1;
+      position: relative;
+    }
+    
+    .modern-radio-item input[type="radio"] {
+      display: none;
+    }
+    
+    .modern-radio-item label {
+      display: block;
+      padding: 8px 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #fafafa;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+    
+    .modern-radio-item input[type="radio"]:checked + label {
+      border-color: var(--btn-color, #007bff);
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      transform: translateY(-2px);
+    }
+    
+    .modern-radio-item input[type="radio"]:checked + label:hover {
+      opacity: 0.9;
+    }
+    
+    .modern-color-options {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .modern-color-option {
+      position: relative;
+    }
+    
+    .modern-color-option input[type="radio"] {
+      display: none;
+    }
+    
+    .modern-color-option label {
+      display: block;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #e0e0e0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .modern-color-option label:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .modern-color-option input[type="radio"]:checked + label {
+      border: 3px solid var(--btn-color, #007bff);
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .modern-color-option input[type="radio"]:checked + label:hover {
+      transform: scale(1.2);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+    
+    /* تحسين عرض اللون الأبيض */
+    .modern-color-option label[style*="background:white"],
+    .modern-color-option label[style*="background:#fff"],
+    .modern-color-option label[style*="background:#ffffff"],
+    .modern-color-option label[style*="background:rgb(255,255,255)"],
+    .modern-color-option label[style*="background:rgba(255,255,255"] {
+      border: 2px solid #ccc;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    
+    .modern-color-option label[style*="background:white"]:hover,
+    .modern-color-option label[style*="background:#fff"]:hover,
+    .modern-color-option label[style*="background:#ffffff"]:hover,
+    .modern-color-option label[style*="background:rgb(255,255,255)"]:hover,
+    .modern-color-option label[style*="background:rgba(255,255,255"]:hover {
+      border-color: #999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    .modern-color-option input[type="radio"]:checked + label[style*="background:white"],
+    .modern-color-option input[type="radio"]:checked + label[style*="background:#fff"],
+    .modern-color-option input[type="radio"]:checked + label[style*="background:#ffffff"],
+    .modern-color-option input[type="radio"]:checked + label[style*="background:rgb(255,255,255)"],
+    .modern-color-option input[type="radio"]:checked + label[style*="background:rgba(255,255,255"] {
+      border: 3px solid var(--btn-color, #007bff);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+    
+    .modern-size-options {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .modern-size-option {
+      position: relative;
+    }
+    
+    .modern-size-option input[type="radio"] {
+      display: none;
+    }
+    
+    .modern-size-option label {
+      display: block;
+      padding: 7px 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #fafafa;
+      font-weight: 500;
+      min-width: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    
+    .modern-size-option input[type="radio"]:checked + label {
+      border-color: var(--btn-color, #007bff);
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      transform: translateY(-2px);
+    }
+    
+    .modern-size-option input[type="radio"]:checked + label:hover {
+      opacity: 0.9;
+    }
+    
+    .modern-quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    
+    .modern-quantity-selector label {
+      font-weight: 500;
+      color: #555;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    
+    .modern-quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: quantityPulse 2s ease-in-out infinite;
+      border: none;
+    }
+    
+    .modern-quantity-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    
+    .modern-quantity-btn:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+    
+    .modern-quantity-display {
+      width: 50px;
+      height: 32px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+    
+    .modern-summary {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .modern-summary h5 {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.95rem;
+    }
+    
+    .modern-summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 0.9rem;
+    }
+    
+    .modern-summary-item:last-child {
+      border-bottom: none;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--btn-color, #007bff);
+    }
+    
+    .modern-summary-item:last-child:hover {
+      opacity: 0.9;
+    }
+    
+    .modern-submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      animation: buttonDance 2.5s ease-in-out infinite;
+    }
+    
+    .modern-submit-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    
+    .modern-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* تحسينات للهواتف */
+    @media (max-width: 767px) {
+      .modern-form-container {
+        margin: 8px;
+        padding: 12px;
+        border-radius: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+      
+      .modern-input-group input,
+      .modern-input-group select {
+        padding: 10px 10px 10px 35px;
+        font-size: 16px; /* منع التكبير في الآيفون */
+        border-radius: 8px;
+        border: 2px solid #e0e0e0;
+      }
+      
+      .modern-input-group input:focus,
+      .modern-input-group select:focus {
+        font-size: 16px;
+        transform: none;
+      }
+      
+      .modern-radio-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .modern-color-options,
+      .modern-size-options {
+        gap: 6px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      
+      .modern-color-option label {
+        width: 35px;
+        height: 35px;
+        border-width: 3px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      }
+      
+      /* تحسين عرض اللون الأبيض على الهواتف */
+      .modern-color-option label[style*="background:white"],
+      .modern-color-option label[style*="background:#fff"],
+      .modern-color-option label[style*="background:#ffffff"],
+      .modern-color-option label[style*="background:rgb(255,255,255)"],
+      .modern-color-option label[style*="background:rgba(255,255,255"] {
+        border: 3px solid #bbb;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+      }
+      
+      .modern-size-option label {
+        padding: 8px 12px;
+        font-size: 14px;
+        min-width: 40px;
+        border-radius: 8px;
+      }
+      
+      .modern-quantity-selector {
+        padding: 12px;
+        border-radius: 10px;
+      }
+      
+      .modern-quantity-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 50%;
+      }
+      
+      .modern-quantity-display {
+        width: 50px;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 8px;
+      }
+      
+      .modern-quantity-controls {
+        animation: mobileQuantityPulse 1.5s ease-in-out infinite;
+        border: none;
+      }
+      
+      .modern-submit-btn {
+        padding: 15px;
+        font-size: 16px;
+        animation: mobileButtonDance 2s ease-in-out infinite;
+        border-radius: 10px;
+      }
+      
+      .form-section-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+      
+      .modern-summary {
+        padding: 15px;
+        border-radius: 10px;
+      }
+      
+      .modern-summary h5 {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+      
+      .modern-summary-item {
+        font-size: 14px;
+        padding: 10px 0;
+      }
+      
+      /* تحسين الألوان والمقاسات في سطر واحد */
+      .modern-color-size-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      
+      .modern-color-section,
+      .modern-size-section {
+        flex: 1;
+        min-width: 120px;
+      }
+      
+      .modern-color-section .form-section-title,
+      .modern-size-section .form-section-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      
+      .modern-color-options {
+        gap: 8px;
+        justify-content: flex-start;
+      }
+      
+      .modern-size-options {
+        gap: 6px;
+        justify-content: flex-start;
+      }
+      
+          /* تحسين الفونت للآيفون */
+    body, input, select, textarea, button, label {
+      font-family: 'Cairo', sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "liga" 1, "kern" 1;
+    }
+      
+      /* تحسين المسافات */
+      .modern-input-group {
+        margin-bottom: 20px;
+      }
+      
+      .modern-input-group label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+      
+      /* تحسين الأزرار */
+      .modern-radio-item label {
+        font-size: 14px;
+        padding: 10px 15px;
+        border-radius: 8px;
+      }
+    }
+    
+    /* تحسينات إضافية للفورم الجديد */
+    .modern-form-container {
+      animation: fadeInUp 0.6s ease-out;
+      border-color: var(--btn-color, #007bff);
+    }
+    
+    .modern-form-container::before {
+      background: var(--btn-color, #007bff);
+    }
+    
+    .modern-form-container input:focus,
+    .modern-form-container select:focus {
+      border-color: var(--btn-color, #007bff);
+    }
+    
+    .form-section-title::before {
+      background: var(--btn-color, #007bff);
+    }
+    
+    .modern-summary-item:last-child {
+      color: var(--btn-color, #007bff);
+    }
+    
+    /* تنسيق السعر والحالة في سطر واحد */
+    .mobile-price-status {
+      background: var(--btn-color, #007bff);
+      color: var(--btn-text-color, #fff);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid var(--btn-color, #007bff);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: pricePulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pricePulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+    
+    .mobile-price-status::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: priceShine 3s ease-in-out infinite;
+    }
+    
+    @keyframes priceShine {
+      0% {
+        left: -100%;
+      }
+      50% {
+        left: 100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    
+    .mobile-price-status:hover {
+      transform: translateY(-2px);
+    }
+    
+    .mobile-price-status:active {
+      transform: translateY(0) scale(0.98);
+    }
+    
+    .mobile-price-status h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--btn-text-color, #fff);
+    }
+    
+    .mobile-price-status .badge {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      background: var(--btn-text-color, #fff) !important;
+      color: var(--btn-color, #007bff) !important;
+      border: 1px solid var(--btn-text-color, #fff);
+    }
+    
+    /* تحسين عرض الحقول في سطر واحد */
+    .modern-form-container .row {
+      margin: 0 -5px;
+    }
+    
+    .modern-form-container .row .col-6 {
+      padding: 0 5px;
+    }
+    
+    /* تحسين للشاشات المتوسطة */
+    @media (max-width: 991px) {
+      .modern-form-container .row .col-6 {
+        padding: 0 3px;
+      }
+    }
+    
+    .special-offer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: offerSweep 3s ease-in-out infinite;
+    }
+    
+    @keyframes offerShine {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    
+    @keyframes offerSweep {
+      0% {
+        left: -100%;
+      }
+      50% {
+        left: 100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    
+    @keyframes quantityPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+    
+    @keyframes mobileQuantityPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.03);
+      }
+    }
+    
+    @keyframes buttonDance {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(-3px);
+      }
+      50% {
+        transform: translateY(0);
+      }
+      75% {
+        transform: translateY(-1px);
+      }
+    }
+    
+    @keyframes mobileButtonDance {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-2px);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+
+    
+    @keyframes desktopButtonFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    .special-offer h5 {
+      color: #d84315;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .special-offer .list-group-item {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ffb300;
+      color: #d84315;
+      font-weight: 500;
+    }
+    
+    .special-offer-radio {
+      background: linear-gradient(45deg, #ffeb3b, #fff176, #ffeb3b);
+      background-size: 200% 200%;
+      animation: offerShine 2s ease-in-out infinite;
+      border: 2px solid #f57f17;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 10px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .special-offer-radio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: offerSweep 3s ease-in-out infinite;
+    }
+    
+    .special-offer-radio .form-check {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin: 3px 0;
+      border: 1px solid #ffb300;
+    }
+    
+    .special-offer-radio .form-check-label {
+      color: #d84315;
+      font-weight: 500;
+    }
+    
+    /* زر إرسال الطلب الثابت للهاتف */
+    .mobile-submit-btn {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      padding: 15px;
+      background-color: transparent ; 
+      z-index: 1000;
+      border-top: 1px solid #e0e0e0;
+      width: 100%;
+      transform: translateX(0);
+      transition: transform 0.3s ease-in-out;
+      animation: mobileButtonDance 2s ease-in-out infinite;
+    }
+    
+    .mobile-submit-btn .modern-submit-btn {
+      background: var(--btn-color, #007bff) !important;
+      color: var(--btn-text-color, #fff) !important;
+    }
+    
+    .mobile-submit-btn .modern-submit-btn:hover {
+      opacity: 0.9;
+    }
+    
+    /* تنسيق زر إرسال الطلب للشاشات الكبيرة */
+    .desktop-submit-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      width: 100%;
+      display: flex;
+      justify-content: center;  /* توسيط زر سطح المكتب */
+      animation: desktopButtonFloat 3s ease-in-out infinite;
+    }
+    
+    .desktop-submit-btn .modern-submit-btn {
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      min-width: 200px;
+      transition: all 0.3s ease;
+      background: var(--btn-color, #007bff) !important;
+      color: var(--btn-text-color, #fff) !important;
+    }
+    
+    .desktop-submit-btn .modern-submit-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    
+    /* تحريك الزر يميناً ويساراً */
+    .mobile-submit-btn.slide-left {
+      transform: translateX(-20px);
+    }
+    
+    .mobile-submit-btn.slide-right {
+      transform: translateX(20px);
+    }
+    
+    /* تحسين الحركة للهواتف */
+    @media (max-width: 767px) {
+      .mobile-submit-btn {
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+    
+    /* إضافة padding للصفحة لتجنب تداخل المحتوى مع الزر الثابت */
+    .mobile-content-padding {
+      padding-bottom: 80px;
+    }
+    
+    /* إضافة padding للشاشات الكبيرة */
+    .desktop-content-padding {
+      padding-bottom: 100px;
+    }
+    
+    /* إخفاء الزر الثابت للهواتف في الشاشات الكبيرة */
+    @media (min-width: 768px) {
+      .mobile-submit-btn {
+        display: none !important;
+      }
+      
+      /* إخفاء الزر الأصلي في النموذج للشاشات الكبيرة */
+      @media (min-width: 768px) {
+        .modern-form-container .modern-submit-btn {
+          display: none !important;
+        }
+      }
+      
+      /* إخفاء الزر الأصلي في النموذج للهواتف */
+      @media (max-width: 767px) {
+        .modern-form-container .modern-submit-btn {
+          display: none !important;
+        }
+      }
+      
+      /* إظهار الزر الثابت للشاشات الكبيرة في الشاشات الكبيرة */
+      @media (min-width: 768px) {
+        .desktop-submit-btn {
+          display: block !important;
+        }
+      }
+    }
+    
+
+    
+    /* تنسيق مودال النجاح */
+    .loading-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #success-modal .loading-content {
+      text-align: center;
+      max-width: 400px;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      margin: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    #success-modal .btn-success {
+      background: var(--btn-color, #28a745) !important;
+      color: var(--btn-text-color, #fff) !important;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    #success-modal .btn-success:hover {
+      background: var(--btn-color, #28a745) !important;
+      color: var(--btn-text-color, #fff) !important;
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .color-box {
+      border: 1px solid #ccc;
+    }
+    
+      /* تحسين المسافات للصورة والفورم في الشاشات الصغيرة */
+      .landing-page-image,
+      .modern-form-container {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    
+      
+      .landing-page-image {
+        margin-bottom: 1rem;
+      }
+      
+      .special-offer {
+        padding: 8px;
+        margin: 3px 0;
+      }
+      
+      .special-offer h5 {
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+      }
+      
+      .special-offer .list-group-item {
+        padding: 6px 10px;
+        margin-bottom: 1px;
+        font-size: 0.9rem;
+      }
+      
+      .special-offer-radio {
+        padding: 10px;
+        margin: 5px 0;
+      }
+      
+      .special-offer-radio .form-check {
+        padding: 4px 8px;
+        margin: 2px 0;
+        font-size: 0.9rem;
+      }
+      
+      /* إظهار الزر الثابت على الهاتف */
+      .mobile-submit-btn {
+        display: block !important;
+      }
+      
+      /* إخفاء الزر الأصلي في النموذج على الهاتف */
+      @media (max-width: 767px) {
+        .modern-form-container .modern-submit-btn {
+          display: none !important;
+        }
+      }
+      
+      /* إضافة مساحة في الأسفل لتجنب تداخل الزر الثابت */
+      .modern-form-container {
+        padding-bottom: 100px;
+      }
+      
+      /* إضافة مساحة في الأسفل للشاشات الكبيرة */
+      @media (min-width: 768px) {
+        .modern-form-container {
+          padding-bottom: 120px;
+        }
+      }
+      
+      /* إخفاء الزر الثابت للشاشات الكبيرة في الهواتف */
+      @media (max-width: 767px) {
+        .desktop-submit-btn {
+          display: none !important;
+        }
+      }
+      
+      /* إظهار الزر الثابت للهواتف في الهواتف */
+      .mobile-submit-btn {
+        display: block !important;
+      }
+      
+      /* إخفاء الزر الثابت للهواتف في الشاشات الكبيرة */
+      @media (min-width: 768px) {
+        .mobile-submit-btn {
+          display: none !important;
+        }
+      }
+    
+    /* تحسين عرض الألوان مع مؤشر بصري */
+    .modern-color-option label::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .modern-color-option input[type="radio"]:checked + label::after {
+      opacity: 1;
+    }
+    
+    /* تحسين عرض اللون الأبيض مع مؤشر مختلف */
+    .modern-color-option label[style*="background:white"]::after,
+    .modern-color-option label[style*="background:#fff"]::after,
+    .modern-color-option label[style*="background:#ffffff"]::after,
+    .modern-color-option label[style*="background:rgb(255,255,255)"]::after,
+    .modern-color-option label[style*="background:rgba(255,255,255"]::after {
+      background: #333;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    /* تحسين عرض الألوان الفاتحة */
+    .modern-color-option label[style*="background:yellow"]::after,
+    .modern-color-option label[style*="background:#ffff00"]::after,
+    .modern-color-option label[style*="background:rgb(255,255,0)"]::after,
+    .modern-color-option label[style*="background:rgba(255,255,0"]::after,
+    .modern-color-option label[style*="background:lightyellow"]::after,
+    .modern-color-option label[style*="background:#ffffe0"]::after {
+      background: #333;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+  </style>
+  
+  <script type="module">
+    import { pixelService } from './js/services/pixel-service.js';
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const landingPageId = urlParams.get("id");
+
+    // تحميل البيكسل المرتبط بصفحة الهبوط عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!landingPageId) return;
+      
+      try {
+        await pixelService.loadLandingPagePixel(landingPageId);
+        
+        // تتبع ViewContent لصفحة الهبوط
+        await pixelService.trackViewContent({
+          type: 'landing_page',
+          id: landingPageId,
+          name: 'Landing Page View'
+        });
+      } catch (error) {
+        console.error("❌ خطأ في تحميل بيكسل صفحة الهبوط:", error);
+      }
+    });
+  </script>
+</head>
+<body>
+
+  
+  
+
+
+  <main class="container p-0">
+    <div class="row" id="landing-page-content">
+      <!-- سيتم تعبئة محتوى صفحة الهبوط ديناميكياً -->
+    </div>
+  </main>
+  
+  
+  
+  <!-- مودل نجاح إرسال الطلب -->
+  <div id="success-modal" class="loading-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9999; align-items: center; justify-content: center;">
+    <div class="loading-content" style="background: white; padding: 2rem; border-radius: 15px; text-align: center; max-width: 400px; margin: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+      <div class="text-success mb-3">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h4 class="text-success mb-2">تم استلام الطلب بنجاح!</h4>
+      <p class="text-muted mb-3">سيتم التواصل معكم قريباً</p>
+      <button class="btn btn-success" onclick="redirectToIndex()" style="padding: 12px 30px; border-radius: 25px; font-weight: 600;">العودة للصفحة الرئيسية</button>
+    </div>
+  </div>
+  
+  <!-- زر إرسال الطلب الثابت للهاتف -->
+  <div class="mobile-submit-btn">
+    <button type="submit" form="order-form" class="modern-submit-btn" onclick="submitOrderFromFixedButton()">
+      🛒 اطلب الآن
+    </button>
+  </div>
+  
+  <!-- زر إرسال الطلب الثابت للشاشات الكبيرة -->
+  <div class="desktop-submit-btn">
+    <button type="submit" form="order-form" class="modern-submit-btn">
+      🛒 اطلب الآن
+    </button>
+  </div>
+  
+ <footer class="main-footer p-3 mt-5"
+          style="color: #000 !important; background: #fff; padding: 1rem 1.2rem; margin: 2rem 10px 0 10px; border-radius: 0 0 18px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); font-size: 1rem; text-align: center;">
+    <div class="mt-2 text-center">
+      جميع الحقوق محفوظة &copy; <span id="footer-store-name">متجري</span>
+    </div>
+    <!-- أيقونات وسائل التواصل الاجتماعي -->
+    <div class="social-media-icons text-center mt-3" id="social-media-icons" style="display: none;">
+      <a href="#" class="social-icon facebook-icon" target="_blank" rel="noopener noreferrer" style="display: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png" alt="Facebook" style="width: 25px; height: 25px; object-fit: contain;">
+      </a>
+      <a href="#" class="social-icon instagram-icon" target="_blank" rel="noopener noreferrer" style="display: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/198px-Instagram_logo_2016.svg.png?20210403190622" alt="Instagram" style="width: 25px; height: 25px; object-fit: contain;">
+      </a>
+      <a href="#" class="social-icon whatsapp-icon" target="_blank" rel="noopener noreferrer" style="display: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/2062095_application_chat_communication_logo_whatsapp_icon.svg/105px-2062095_application_chat_communication_logo_whatsapp_icon.svg.png?20220531073934" alt="WhatsApp" style="width: 25px; height: 25px; object-fit: contain;">
+      </a>
+      <a href="#" class="social-icon tiktok-icon" target="_blank" rel="noopener noreferrer" style="display: none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Ionicons_logo-tiktok.svg/768px-Ionicons_logo-tiktok.svg.png" alt="TikTok" style="width: 25px; height: 25px; object-fit: contain;">
+      </a>
+      <br><br><br><br>
+      
+
+    </div>
+  </footer>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- تم حذف تضمين server-superbase.js هنا لأنه يجب استيراده فقط كوحدة (module) عبر type="module" وليس كسكريبت عادي -->
+  <script type="module">
+    // استيراد الخدمات المحسنة
+    import { supabaseService } from './js/services/supabase-service.js';
+    import { stateService } from './js/services/state-service.js';
+    import { uiService } from './js/services/ui-service.js';
+    import { pixelService } from './js/services/pixel-service.js';
+    import { errorHandler } from './js/utils/errors.js';
+    import { createOrder } from './js/server-superbase.js';
+    window.createOrder = createOrder;
+    let statesData = [];
+    let colors = [];
+    let sizes = [];
+    let offers = [];
+    let landingPageData = null;
+
+
+    
+    // دالة لجلب إعدادات المتجر وتطبيقها
+    async function loadStoreSettings() {
+      const { data, error } = await supabaseService.getStoreSettings();
+
+      if (!error && data) {
+        // تطبيق لون الهيدر
+        
+        // تطبيق ألوان الأزرار الجديدة
+        if (data.btncolor) {
+          let backgroundColor = '#007bff';
+          let textColor = '#ffffff';
+          
+          if (typeof data.btncolor === 'object') {
+            backgroundColor = data.btncolor.backgroundColor || '#007bff';
+            textColor = data.btncolor.textColor || '#ffffff';
+          } else if (typeof data.btncolor === 'string') {
+            // للتوافق مع البيانات القديمة
+            backgroundColor = data.btncolor;
+            textColor = '#ffffff';
+          }
+          
+          document.documentElement.style.setProperty('--btn-color', backgroundColor);
+          document.documentElement.style.setProperty('--btn-text-color', textColor);
+          
+          const style = document.createElement('style');
+          style.textContent = `
+            .btn-main, .modern-submit-btn {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              border-radius: 25px;
+              font-weight: bold;
+              transition: background 0.2s;
+            }
+            .btn-main:hover, .modern-submit-btn:hover {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              opacity: 0.9;
+            }
+            .modern-quantity-btn {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              border-color: ${backgroundColor} !important;
+            }
+            .modern-quantity-btn:hover {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              opacity: 0.9;
+            }
+            .modern-radio-item input[type="radio"]:checked + label {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              border-color: ${backgroundColor} !important;
+            }
+            .modern-size-option input[type="radio"]:checked + label {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              border-color: ${backgroundColor} !important;
+            }
+            .modern-color-option input[type="radio"]:checked + label {
+              border-color: ${backgroundColor} !important;
+            }
+            .mobile-price-status {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              border-color: ${backgroundColor} !important;
+            }
+            .mobile-price-status h4 {
+              color: ${textColor} !important;
+            }
+            .mobile-price-status .badge {
+              color: ${backgroundColor} !important;
+              background: ${textColor} !important;
+            }
+            .modern-form-container {
+              border-color: ${backgroundColor} !important;
+            }
+            .modern-form-container::before {
+              background: ${backgroundColor} !important;
+            }
+            .modern-form-container input:focus,
+            .modern-form-container select:focus {
+              border-color: ${backgroundColor} !important;
+            }
+            .form-section-title::before {
+              background: ${backgroundColor} !important;
+            }
+            .modern-summary-item:last-child {
+              color: ${backgroundColor} !important;
+            }
+            #success-modal .btn-success {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+            }
+            #success-modal .btn-success:hover {
+              background: ${backgroundColor} !important;
+              color: ${textColor} !important;
+              opacity: 0.9;
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        // تطبيق لون النص
+        if (data.textcolor) {
+          document.documentElement.style.setProperty('--text-color', data.textcolor);
+          const style = document.createElement('style');
+          style.textContent = `
+            body, h1, h2, h3, h4, h5, h6, p, span, div, label, input, select, textarea, button, a {
+              color: ${data.textcolor} !important;
+            }
+            .card-title, .card-text, .lead, .text-muted, .form-control, .form-select {
+              color: ${data.textcolor} !important;
+            }
+            .form-section-title, .modern-input-group label {
+              color: ${data.textcolor} !important;
+            }
+            .modern-summary h5, .modern-summary-item {
+              color: ${data.textcolor} !important;
+            }
+            .main-footer {
+              color: ${data.textcolor} !important;
+            }
+            .special-offer h5, .special-offer .list-group-item {
+              color: ${data.textcolor} !important;
+            }
+            .alert {
+              color: ${data.textcolor} !important;
+            }
+            .badge {
+              color: inherit !important;
+            }
+            .loading-content p {
+              color: ${data.textcolor} !important;
+            }
+            .modern-quantity-selector label {
+              color: ${data.textcolor} !important;
+            }
+            .modern-quantity-display {
+              color: ${data.textcolor} !important;
+            }
+            .modern-radio-item label {
+              color: ${data.textcolor} !important;
+            }
+            .modern-size-option label {
+              color: ${data.textcolor} !important;
+            }
+            .modern-color-option label {
+              color: ${data.textcolor} !important;
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        // تطبيق اسم المتجر
+        if (data.name) {
+          const storeNameElements = document.querySelectorAll('#store-name, #footer-store-name');
+          storeNameElements.forEach(element => {
+            element.textContent = data.name;
+          });
+        }
+        applySocialMediaLinks(data);
+      }
+    }
+    // دالة لتطبيق روابط وسائل التواصل الاجتماعي
+    function applySocialMediaLinks(settings) {
+      const socialIconsContainer = document.getElementById('social-media-icons');
+      if (!socialIconsContainer) return;
+      
+      let hasAnySocialLink = false;
+      
+      // تطبيق رابط الفيسبوك
+      if (settings.facebook_url && settings.facebook_url.trim()) {
+        const facebookIcon = socialIconsContainer.querySelector('.facebook-icon');
+        if (facebookIcon) {
+          facebookIcon.href = settings.facebook_url;
+          facebookIcon.style.display = 'inline-block';
+          hasAnySocialLink = true;
+        }
+      }
+      
+      // تطبيق رابط الانستقرام
+      if (settings.instagram_url && settings.instagram_url.trim()) {
+        const instagramIcon = socialIconsContainer.querySelector('.instagram-icon');
+        if (instagramIcon) {
+          instagramIcon.href = settings.instagram_url;
+          instagramIcon.style.display = 'inline-block';
+          hasAnySocialLink = true;
+        }
+      }
+      
+      // تطبيق رابط الواتساب
+      if (settings.whatsapp_url && settings.whatsapp_url.trim()) {
+        const whatsappIcon = socialIconsContainer.querySelector('.whatsapp-icon');
+        if (whatsappIcon) {
+          // تنسيق رابط الواتساب
+          let whatsappUrl = settings.whatsapp_url;
+          if (!whatsappUrl.startsWith('https://wa.me/') && !whatsappUrl.startsWith('http://wa.me/')) {
+            // إزالة الرموز والمسافات من رقم الهاتف
+            const phoneNumber = whatsappUrl.replace(/[\s\-\(\)]/g, '');
+            whatsappUrl = `https://wa.me/${phoneNumber}`;
+          }
+          whatsappIcon.href = whatsappUrl;
+          whatsappIcon.style.display = 'inline-block';
+          hasAnySocialLink = true;
+        }
+      }
+      
+      // تطبيق رابط التيك توك
+      if (settings.tiktok_url && settings.tiktok_url.trim()) {
+        const tiktokIcon = socialIconsContainer.querySelector('.tiktok-icon');
+        if (tiktokIcon) {
+          tiktokIcon.href = settings.tiktok_url;
+          tiktokIcon.style.display = 'inline-block';
+          hasAnySocialLink = true;
+        }
+      }
+      
+      // إظهار أو إخفاء حاوية الأيقونات
+      if (hasAnySocialLink) {
+        socialIconsContainer.style.display = 'block';
+      } else {
+        socialIconsContainer.style.display = 'none';
+      }
+    }
+    
+    function getLandingPageIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+    
+    async function loadLandingPageDetails() {
+      const id = getLandingPageIdFromUrl();
+      if (!id) {
+        document.getElementById('landing-page-content').innerHTML = '<div class="alert alert-danger">لم يتم تحديد صفحة الهبوط</div>';
+        return;
+      }
+      
+      try {
+        const result = await supabaseService.getLandingPage(id);
+        const { data, error } = result;
+        if (error || !data) {
+          document.getElementById('landing-page-content').innerHTML = '<div class="alert alert-danger">لم يتم العثور على صفحة الهبوط</div>';
+          return;
+        }
+        
+        // تخزين بيانات صفحة الهبوط في الحالة
+        stateService.setState({ currentLandingPage: data }, 'load-landing-page-details');
+      
+      
+      
+      let image = 'https://via.placeholder.com/500x350';
+      try {
+        if (data.image && data.image.startsWith('[')) {
+          const images = JSON.parse(data.image);
+          if (images.length > 0) {
+            image = images[0]; // الصورة الأولى
+          }
+        } else if (data.image && !data.image.startsWith('[')) {
+          image = data.image; // صورة واحدة
+        }
+      } catch(e) {
+        if (data.image && !data.image.startsWith('[')) {
+          image = data.image;
+        }
+      }
+      
+      try { offers = data.offers ? JSON.parse(data.offers) : []; } catch(e) { offers = []; }
+      
+      // استرجاع الألوان والقياسات إذا وجدت
+      try { colors = data.colors ? JSON.parse(data.colors) : []; } catch(e) { colors = []; }
+      try { sizes = data.sizes ? JSON.parse(data.sizes) : []; } catch(e) { sizes = []; }
+      
+      // تخزين البيانات عالمياً
+      window.colors = colors;
+      window.sizes = sizes;
+      window.offers = offers;
+      window.landingPageData = data;
+      
+      // بناء HTML لاختيارات الألوان
+      let colorSelectHtml = '';
+      if (colors.length > 0) {
+        colorSelectHtml = `<div class="mb-3"><label class="form-label">اختر اللون</label><div id="color-radio-group">` +
+          colors.map((c, idx) => `<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="colorRadio" id="colorRadio${idx}" value="${c.name}" style="accent-color:${c.hex};"><label class="form-check-label" for="colorRadio${idx}"><span class="color-box" style="background:${c.hex};display:inline-block;width:20px;height:20px;border-radius:50%;margin-left:5px;"></span>${c.name}</label></div>`).join('') +
+          `</div></div>`;
+      }
+      
+      // بناء HTML لاختيارات القياسات
+      let sizeSelectHtml = '';
+      if (sizes.length > 0) {
+        sizeSelectHtml = `<div class="mb-3"><label class="form-label">اختر المقاس</label><div id="size-radio-group">` +
+          sizes.map((s, idx) => `<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="sizeRadio" id="sizeRadio${idx}" value="${s}"><label class="form-check-label" for="sizeRadio${idx}">${s}</label></div>`).join('') +
+          `</div></div>`;
+      }
+      
+      let offersHtml = '';
+      let offerSelectHtml = '';
+      if (offers.length > 0) {
+        offersHtml = `<div class="mt-3 special-offer"><h5>🎉 العروض الخاصة 🎉</h5><ul class="list-group">` + offers.map((o, idx) => `<li class="list-group-item">${o.qty} قطعة بـ ${o.price} دج</li>`).join('') + `</ul></div>`;
+        offerSelectHtml = `<div class="mb-3 special-offer-radio"><label class="form-label">🎯 اختر عرض خاص</label><div id="offer-radio-group">` +
+          `<div class="form-check"><input class="form-check-input" type="radio" name="offerRadio" id="offerRadioNone" value="" checked><label class="form-check-label" for="offerRadioNone">بدون عرض خاص (سعر عادي)</label></div>` +
+          offers.map((o, idx) => `<div class="form-check"><input class="form-check-input" type="radio" name="offerRadio" id="offerRadio${idx}" value="${idx}"><label class="form-check-label" for="offerRadio${idx}">${o.qty} قطعة بـ ${o.price} دج</label></div>`).join('') +
+          `</div></div>`;
+      }
+      
+      // تطبيق عرض الصورة المحدد
+      const imageWidth = data.image_width || '100%';
+      const imageStyle = `width: ${imageWidth}; max-width: 100%; height: auto;`;
+      
+      document.getElementById('landing-page-content').innerHTML = `
+        <div class="col-12 d-flex justify-content-center mb-4">
+          <img src="${image}" alt="صورة صفحة الهبوط" class="landing-page-image"
+               style="${imageStyle} display:block;"
+               onerror="this.src='https://via.placeholder.com/500x350'">
+        </div>
+        
+        <div class="col-12">
+          <h2 class="text-center mb-4">${data.name}</h2>
+          <h4 class="text-success text-center mb-3">السعر: <span id="product-price">${data.price}</span> دج</h4>
+          <div class="text-center mb-3">
+            <strong>الحالة:</strong> ${data.available !== false ? '<span class="badge bg-success">متوفر</span>' : '<span class="badge bg-danger">غير متوفر</span>'}
+          </div>
+          ${offersHtml}
+        </div>
+        
+        ${data.available === false ? '<div class="col-12"><div class="alert alert-warning text-center">هذا المنتج غير متوفر حالياً</div></div>' : `
+        <div class="col-12 d-flex justify-content-center">
+          <div class="modern-form-container">
+            <form id="order-form">
+              <!-- اختيارات الألوان والمقاسات -->
+              ${colors.length > 0 || sizes.length > 0 ? `
+              <div class="row">
+                ${colors.length > 0 ? `
+                <div class="col-6">
+                  <div class="form-section-title">🎨 اختر اللون</div>
+                  <div class="modern-color-options">
+                    ${colors.map((c, idx) => `
+                    <div class="modern-color-option">
+                      <input type="radio" name="colorRadio" id="colorRadio${idx}" value="${c.name}">
+                      <label for="colorRadio${idx}" style="background:${c.hex};" title="${c.name}"></label>
+                    </div>
+                    `).join('')}
+                  </div>
+                </div>
+                ` : ''}
+                ${sizes.length > 0 ? `
+                <div class="col-6">
+                  <div class="form-section-title">📏 اختر المقاس</div>
+                  <div class="modern-size-options">
+                    ${sizes.map((s, idx) => `
+                    <div class="modern-size-option">
+                      <input type="radio" name="sizeRadio" id="sizeRadio${idx}" value="${s}">
+                      <label for="sizeRadio${idx}">${s}</label>
+                    </div>
+                    `).join('')}
+                  </div>
+                </div>
+                ` : ''}
+              </div>
+              ` : ''}
+              
+              <div class="modern-input-group">
+                <label for="fullName">الاسم الكامل</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="fullName" required>
+                </div>
+              </div>
+              
+              <div class="modern-input-group">
+                <label for="phonenumber">رقم الهاتف</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">📱</span>
+                  <input type="number" id="phonenumber" required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-6">
+                  <div class="modern-input-group">
+                    <label for="address">العنوان</label>
+                    <div class="input-wrapper">
+                      <span class="input-icon">📍</span>
+                      <input type="text" id="address" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="modern-input-group">
+                    <label for="state">الولاية</label>
+                    <div class="input-wrapper">
+                      <span class="input-icon">🌍</span>
+                      <select id="state" required>
+                        <option value="">اختر الولاية</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- نوع الشحن -->
+              <div class="form-section-title">🚚 نوع الشحن</div>
+              <div class="modern-radio-group">
+                <div class="modern-radio-item">
+                  <input type="radio" name="shippingType" id="toOffice" value="office" checked>
+                  <label for="toOffice">🏢 إلى المكتب</label>
+                </div>
+                <div class="modern-radio-item">
+                  <input type="radio" name="shippingType" id="toHome" value="home">
+                  <label for="toHome">🏠 إلى باب المنزل</label>
+                </div>
+              </div>
+              
+              <!-- العروض الخاصة -->
+              ${offers.length > 0 ? `
+              <div class="form-section-title">🎉 العروض الخاصة</div>
+              <div class="modern-radio-group">
+                <div class="modern-radio-item">
+                  <input type="radio" name="offerRadio" id="offerRadioNone" value="" checked>
+                  <label for="offerRadioNone">💰 بدون عرض خاص (سعر عادي)</label>
+                </div>
+                ${offers.map((o, idx) => `
+                <div class="modern-radio-item">
+                  <input type="radio" name="offerRadio" id="offerRadio${idx}" value="${idx}">
+                  <label for="offerRadio${idx}">🎯 ${o.qty} قطعة بـ ${o.price} دج</label>
+                </div>
+                `).join('')}
+              </div>
+              ` : ''}
+              
+              <!-- اختيار الكمية -->
+              <div class="form-section-title">📦 الكمية</div>
+              <div class="modern-quantity-selector">
+                <label>العدد:</label>
+                <div class="modern-quantity-controls">
+                  <button type="button" class="modern-quantity-btn" onclick="changeQuantity('', -1)">-</button>
+                  <div class="modern-quantity-display" id="quantity-display">1</div>
+                  <button type="button" class="modern-quantity-btn" onclick="changeQuantity('', 1)">+</button>
+                </div>
+                <input type="hidden" id="quantity" value="1" required>
+              </div>
+              
+              <!-- ملخص الطلبية -->
+              <div class="modern-summary">
+                <h5>📋 ملخص الطلبية</h5>
+                <div class="modern-summary-item">
+                  <span>سعر المنتج:</span>
+                  <span id="summary-product-price">${data.price} دج</span>
+                </div>
+                <div class="modern-summary-item">
+                  <span>سعر الشحن:</span>
+                  <span id="summary-shipping-price">0 دج</span>
+                </div>
+                <div class="modern-summary-item">
+                  <span>المجموع:</span>
+                  <span id="summary-total">${data.price} دج</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        `}
+      `;
+      
+      // بعد عرض الفورم، جلب الولايات وتحديث ملخص الطلبية
+      loadStatesAndHandleSummary(window.landingPageData.price, window.offers);
+      
+      } catch (error) {
+        errorHandler.handleError(error, 'load-landing-page-details', { landingPageId: id });
+        document.getElementById('landing-page-content').innerHTML = 
+          '<div class="alert alert-danger">حدث خطأ في تحميل تفاصيل صفحة الهبوط</div>';
+      }
+      
+      // إضافة أحداث النموذج
+      const orderForm = document.getElementById('order-form');
+      if (orderForm) {
+        orderForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          await handleOrderSubmit(orderForm);
+        });
+      }
+      
+      
+      // دالة معالجة إرسال الطلب
+      window.handleOrderSubmit = async function(orderForm) {
+        // التحقق من صحة البيانات الأساسية
+        const full_name = orderForm.querySelector('#fullName').value.trim();
+        const phone_number = orderForm.querySelector('#phonenumber').value.trim();
+        const address = orderForm.querySelector('#address').value.trim();
+        const state_id = orderForm.querySelector('#state').value;
+        const shipping_type = orderForm.querySelector('input[name="shippingType"]:checked')?.value;
+        
+        if (!full_name) {
+          orderForm.querySelector('#fullName').focus();
+          orderForm.querySelector('#fullName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return false;
+        }
+        
+        // التحقق من رقم الهاتف
+        if (!phone_number) {
+          orderForm.querySelector('#phonenumber').focus();
+          orderForm.querySelector('#phonenumber').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return false;
+        }
+        
+        // التحقق من العنوان
+        if (!address) {
+          orderForm.querySelector('#address').focus();
+          orderForm.querySelector('#address').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return false;
+        }
+        
+        // التحقق من اختيار الولاية
+        if (!state_id) {
+          orderForm.querySelector('#state').focus();
+          orderForm.querySelector('#state').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return false;
+        }
+        
+        // التحقق من نوع الشحن
+        if (!shipping_type) {
+          const shippingInputs = orderForm.querySelectorAll('input[name="shippingType"]');
+          if (shippingInputs.length > 0) {
+            shippingInputs[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return false;
+        }
+        
+        // التحقق من اختيار اللون إذا كان مطلوباً
+        if (window.colors.length > 0 && !orderForm.querySelector('input[name="colorRadio"]:checked')) {
+          const colorOptions = orderForm.querySelector('.modern-color-options');
+          if (colorOptions) {
+            colorOptions.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return false;
+        }
+        
+        // التحقق من اختيار المقاس إذا كان مطلوباً
+        if (window.sizes.length > 0 && !orderForm.querySelector('input[name="sizeRadio"]:checked')) {
+          const sizeOptions = orderForm.querySelector('.modern-size-options');
+          if (sizeOptions) {
+            sizeOptions.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return false;
+        }
+        
+        const state_name = orderForm.querySelector('#state').selectedOptions[0]?.textContent || '';
+        let quantity = parseInt(orderForm.querySelector('#quantity').value) || 1;
+        
+        // جمع بيانات اللون
+        let color = '', color_hex = '';
+        if (window.colors.length > 0) {
+          const colorRadio = orderForm.querySelector('input[name="colorRadio"]:checked');
+          if (colorRadio) {
+            color = colorRadio.value;
+            const cObj = window.colors.find(c => c.name === color);
+            color_hex = cObj ? cObj.hex : '';
+          }
+        }
+        
+        // جمع بيانات المقاس
+        let size = '';
+        if (window.sizes.length > 0) {
+          const sizeRadio = orderForm.querySelector('input[name="sizeRadio"]:checked');
+          if (sizeRadio) size = sizeRadio.value;
+        }
+        
+        // جمع بيانات العرض الخاص
+        let offer_label = '';
+        let offerIdx = '';
+        let product_price = window.landingPageData.price;
+        
+        if (window.offers.length > 0) {
+          const offerRadio = orderForm.querySelector('input[name="offerRadio"]:checked');
+          if (offerRadio && offerRadio.value !== '') {
+            offerIdx = offerRadio.value;
+            const offer = window.offers[offerIdx];
+            if (offer) {
+              offer_label = `${offer.qty} قطعة بـ ${offer.price} دج`;
+              product_price = offer.price / offer.qty;
+              // تحديث الكمية لتكون مضاعفة للعرض
+              quantity = Math.ceil(quantity / offer.qty) * offer.qty;
+              orderForm.querySelector('#quantity').value = quantity;
+              document.getElementById('quantity-display').textContent = quantity;
+            }
+          }
+        }
+        
+        // حساب سعر الشحن
+        let shipping_price = 0;
+        const selectedState = statesData.find(s => s.id == state_id);
+        if (selectedState) {
+          shipping_price = shipping_type === 'home' ? selectedState.home_delivery_price : selectedState.office_delivery_price;
+        }
+        
+        // حساب السعر الإجمالي
+        let total_price = 0;
+        if (offerIdx !== '') {
+          const offer = offers[offerIdx];
+          if (offer) {
+            total_price = (Math.ceil(quantity / offer.qty) * offer.price) + shipping_price;
+          }
+        } else {
+          total_price = product_price * quantity + shipping_price;
+        }
+        
+        // إرسال الطلب
+        const orderObj = {
+          product_id: window.landingPageData.id,
+          product_name: window.landingPageData.name,
+          product_image: window.landingPageData.image,
+          full_name,
+          phone_number,
+          address,
+          state_id,
+          state_name,
+          shipping_type,
+          color,
+          color_hex,
+          size,
+          quantity,
+          offer_label,
+          product_price,
+          shipping_price,
+          total_price,
+          status: 'pending',
+        };
+        
+        console.log('بيانات الطلب المرسلة:', orderObj);
+        
+        const { error } = await window.createOrder(orderObj);
+        if (error) {
+          alert('حدث خطأ أثناء إرسال الطلب: ' + error.message);
+          return false;
+        } else {
+          // إظهار مودال النجاح
+          const successModal = document.getElementById('success-modal');
+          if (successModal) {
+            successModal.style.display = 'flex';
+            
+            // إضافة إمكانية إغلاق المودال بالضغط على الخلفية
+            successModal.onclick = function(e) {
+              if (e.target === successModal) {
+                successModal.style.display = 'none';
+                window.redirectToIndex();
+              }
+            };
+            
+            // التوجيه التلقائي بعد 5 ثوانٍ
+            setTimeout(() => {
+              if (successModal.style.display === 'flex') {
+                window.redirectToIndex();
+              }
+            }, 5000);
+          }
+          
+          return true;
+        }
+      }
+    }
+    
+    // دالة جلب الولايات وتحديث ملخص الطلبية
+    function loadStatesAndHandleSummary(productPrice, offers = []) {
+      const stateSelect = document.getElementById('state');
+      const shippingTypeInputs = document.getElementsByName('shippingType');
+      const quantityInput = document.getElementById('quantity');
+      const offerRadioGroup = document.querySelector('input[name="offerRadio"]:checked');
+
+      async function fetchStates() {
+        const { data, error } = await supabaseService.getShippingStates();
+        if (error || !data) return;
+        statesData = data;
+        const optionsHtml = '<option value="">اختر الولاية</option>' +
+          data.map(s => `<option value="${s.id}" data-home="${s.home_delivery_price}" data-office="${s.office_delivery_price}">${s.state_name}</option>`).join('');
+        
+        if (stateSelect) stateSelect.innerHTML = optionsHtml;
+      }
+
+      function updateSummary() {
+        const selectedState = statesData.find(s => s.id == stateSelect.value);
+        const shippingType = Array.from(shippingTypeInputs).find(i => i.checked)?.value;
+        let quantity = parseInt(quantityInput.value) || 1;
+        let unitPrice = productPrice;
+        let offerIdx = "";
+        
+        // التحقق من العرض الخاص المختار
+        const checkedOffer = document.querySelector('input[name="offerRadio"]:checked');
+        if (checkedOffer && checkedOffer.value !== '') {
+          offerIdx = checkedOffer.value;
+        }
+        
+        // إذا تم اختيار عرض خاص
+        if (offerIdx !== "" && offers[offerIdx]) {
+          const offer = offers[offerIdx];
+          unitPrice = offer.price / offer.qty;
+          // تحديث الكمية لتكون مضاعفة للعرض
+          if (quantity < offer.qty) quantity = offer.qty;
+          quantity = Math.ceil(quantity / offer.qty) * offer.qty;
+          quantityInput.value = quantity;
+          document.getElementById('quantity-display').textContent = quantity;
+        }
+        
+        // حساب سعر الشحن
+        let shippingPrice = 0;
+        if (selectedState) {
+          shippingPrice = shippingType === 'home' ? selectedState.home_delivery_price : selectedState.office_delivery_price;
+        }
+        
+        // حساب السعر الإجمالي للمنتج
+        let totalProduct = 0;
+        if (offerIdx !== "" && offers[offerIdx]) {
+          const offer = offers[offerIdx];
+          totalProduct = Math.ceil(quantity / offer.qty) * offer.price;
+        } else {
+          totalProduct = unitPrice * quantity;
+        }
+        
+        const total = totalProduct + shippingPrice;
+        
+        // تحديث عرض الأسعار
+        const summaryProductPrice = document.getElementById('summary-product-price');
+        const summaryShippingPrice = document.getElementById('summary-shipping-price');
+        const summaryTotal = document.getElementById('summary-total');
+        
+        if (summaryProductPrice) summaryProductPrice.textContent = totalProduct + ' دج';
+        if (summaryShippingPrice) summaryShippingPrice.textContent = shippingPrice + ' دج';
+        if (summaryTotal) summaryTotal.textContent = total + ' دج';
+      }
+
+      // إضافة الأحداث
+      if (stateSelect) stateSelect.addEventListener('change', updateSummary);
+      if (shippingTypeInputs.length > 0) {
+        shippingTypeInputs.forEach(i => i.addEventListener('change', updateSummary));
+      }
+      if (quantityInput) quantityInput.addEventListener('input', updateSummary);
+      
+      // إضافة أحداث للعروض الخاصة
+      const offerRadios = document.querySelectorAll('input[name="offerRadio"]');
+      offerRadios.forEach(radio => {
+        radio.addEventListener('change', updateSummary);
+      });
+
+      fetchStates().then(() => {
+        updateSummary();
+      });
+      
+      // جعل دالة updateSummary متاحة عالمياً
+      window.updateSummary = updateSummary;
+    }
+    
+    // دالة التوجيه إلى الصفحة الرئيسية
+    window.redirectToIndex = function() {
+      // إضافة تأخير بسيط قبل التوجيه
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    }
+    
+    // دالة تغيير الكمية
+    window.changeQuantity = function(prefix = '', change) {
+      const quantityInput = document.getElementById(`quantity${prefix}`);
+      const quantityDisplay = document.getElementById(`quantity-display${prefix}`);
+      
+      if (quantityInput && quantityDisplay) {
+        const offersList = window.offers || [];
+        let currentQuantity = parseInt(quantityInput.value) || 1;
+
+        // تحديد خطوة التغيير حسب العرض الخاص إن وُجد
+        let step = 1;
+        const checkedOffer = document.querySelector('input[name="offerRadio"]:checked');
+        if (checkedOffer && checkedOffer.value !== '' && offersList[checkedOffer.value]) {
+          step = parseInt(offersList[checkedOffer.value].qty) || 1;
+        }
+
+        let newQuantity = currentQuantity;
+
+        if (step > 1) {
+          // في حالة العروض الخاصة: الزيادة/الطرح بمضاعفات العرض
+          if (change > 0) {
+            // زيادة الكمية
+            newQuantity = currentQuantity + step;
+          } else if (change < 0) {
+            // إنقاص الكمية
+            newQuantity = currentQuantity - step;
+            if (newQuantity < step) newQuantity = step; // عدم النزول عن أقل كمية مسموحة للعرض
+          }
+        } else {
+          // بدون عروض: زيادة/نقصان بوحدة واحدة مع حد أدنى 1
+          newQuantity = currentQuantity + change;
+          if (newQuantity < 1) newQuantity = 1;
+        }
+
+        quantityInput.value = newQuantity;
+        quantityDisplay.textContent = newQuantity;
+        
+        // تحديث ملخص الطلبية
+        if (window.updateSummary) {
+          window.updateSummary();
+        }
+        
+        console.log(`تم تغيير الكمية إلى: ${newQuantity} (العرض الخاص: ${step > 1 ? 'نعم' : 'لا'})`);
+      }
+    }
+    
+    // دالة إرسال الطلب من الزر الثابت
+    window.submitOrderFromFixedButton = async function() {
+      const orderFormElement = document.getElementById('order-form');
+      if (orderFormElement) {
+        // التمرير إلى النموذج أولاً
+        orderFormElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // انتظار قليل للسماح بانتهاء التمرير قبل التحقق من صحة البيانات
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // ثم محاولة إرسال النموذج
+        const result = await window.handleOrderSubmit(orderFormElement);
+        
+        // إذا نجح الإرسال، إخفاء الزر الثابت
+        if (result !== false) {
+          const mobileSubmitBtn = document.querySelector('.mobile-submit-btn');
+          if (mobileSubmitBtn) {
+            mobileSubmitBtn.style.display = 'none';
+          }
+        }
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      
+      
+      await loadStoreSettings();
+      await loadLandingPageDetails();
+      
+
+    });
+  </script>
+</body>
+</html> 

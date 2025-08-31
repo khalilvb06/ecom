@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة الطلبات</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+    }
+    .main-navbar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 4px 20px rgba(102,126,234,0.08);
+      padding: 0.5rem 0;
+    }
+    .main-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .main-navbar .nav-link {
+      color: #fff !important;
+      font-size: 1.1rem;
+      margin-inline: 0.5rem;
+      transition: color 0.2s;
+    }
+    .main-navbar .nav-link.active, .main-navbar .nav-link:hover {
+      color: #fee140 !important;
+      font-weight: bold;
+    }
+    .main-navbar .navbar-toggler {
+      border: none;
+    }
+    .main-navbar .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    @media (max-width: 991px) {
+      .main-navbar .navbar-collapse {
+        background: #667eea;
+        border-radius: 0 0 20px 20px;
+        margin-top: 0.5rem;
+      }
+    }
+    .order-status-select { min-width: 150px; }
+    .order-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 2px solid #eee; }
+    .emoji { font-size: 1.3em; }
+    .card-stats { 
+      min-width: 180px; 
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .card-stats:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .action-btns .btn { margin-inline-end: 4px; }
+    .modal-lg { max-width: 700px; }
+    .table-responsive { overflow-x: auto; }
+    .table {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    .table thead {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.01);
+      transition: all 0.2s ease;
+    }
+    .alert {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .btn {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .form-select, .form-control {
+      border-radius: 8px;
+      border: 1px solid #e0e7ff;
+    }
+    .form-select:focus, .form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+    }
+    @media (max-width: 767px) {
+      .card-stats {
+        min-width: auto;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+      }
+      .card-stats .card-body {
+        padding: 0.5rem;
+      }
+      .card-stats .emoji {
+        font-size: 1rem;
+      }
+      .card-stats .card-title {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+      }
+      .card-stats .fs-4 {
+        font-size: 1rem !important;
+      }
+      .table-responsive {
+        font-size: 0.9rem;
+      }
+      .order-img {
+        width: 50px;
+        height: 50px;
+      }
+      #orders-stats-row .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- شريط التنقل الجديد -->
+  <nav class="navbar navbar-expand-lg main-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+        <span style="font-size:1.7rem;">🛒</span> متجر إلكتروني
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><span>🏠</span> لوحة التحكم</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><span>🛍️</span> المنتجات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addLandingPage.html"><span>📄</span> صفحات الهبوط</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="orders.html"><span>🛒</span> الطلبات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shipping.html"><span>🚚</span> الشحن</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ads.html"><span>📢</span> الإعلانات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sitting.html"><span>⚙️</span> الإعدادات</a>
+          </li>
+          <li class="nav-item">
+                        <a class="nav-link btn btn-light text-dark px-3 py-2 rounded-3 ms-2" href="index.html" style="background-color: #4a4141 !important; border: 1px solid #dee2e6;">
+                            <span>🏪</span> عرض المتجر
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white px-3 py-2 rounded-3 ms-2" href="#" onclick="logout()" style="background-color: #dc3545 !important; border: 1px solid #dc3545;">
+                            <span>🚪</span> تسجيل الخروج
+                        </a>
+                    </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container py-4">
+    <!-- كروت الإحصائيات -->
+    <div class="row mb-4 g-2" id="orders-stats-row">
+      <div class="col-4 col-md-4">
+        <div class="card card-stats text-center shadow-sm">
+          <div class="card-body">
+            <div class="emoji">📦</div>
+            <h5 class="card-title">إجمالي الطلبات</h5>
+            <span class="fs-4 fw-bold" id="total-orders">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 col-md-4">
+        <div class="card card-stats text-center shadow-sm">
+          <div class="card-body">
+            <div class="emoji">⏳</div>
+            <h5 class="card-title">في انتظار التأكيد</h5>
+            <span class="fs-4 fw-bold text-warning" id="pending-orders">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 col-md-4">
+        <div class="card card-stats text-center shadow-sm">
+          <div class="card-body">
+            <div class="emoji">✅</div>
+            <h5 class="card-title">الطلبات المؤكدة</h5>
+            <span class="fs-4 fw-bold text-success" id="confirmed-orders">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- فلترة الطلبات -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="d-flex align-items-center">
+          <label class="form-label me-2 mb-0">فلترة حسب الحالة:</label>
+          <select class="form-select" id="status-filter" style="width: auto;">
+            <option value="">جميع الطلبات</option>
+            <option value="pending">في انتظار التأكيد ⏳</option>
+            <option value="call1">الاتصال الأول ☎️</option>
+            <option value="call2">الاتصال الثاني ☎️</option>
+            <option value="call3">الاتصال الثالث ☎️</option>
+            <option value="confirmed">تم التأكيد ✅</option>
+            <option value="cancelled">تم إلغاء الطلبية ❌</option>
+            <option value="delivered">وصول الطلبية 🚚</option>
+          </select>
+          <button class="btn btn-outline-secondary ms-2" id="reset-filter">إعادة تعيين</button>
+        </div>
+      </div>
+    </div>
+    <!-- جدول الطلبات -->
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered table-hover align-middle text-center" id="orders-table">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>المنتج</th>
+            <th>الصورة</th>
+            <th>المشتري</th>
+            <th>الكمية</th>
+            <th>الولاية</th>
+            <th>السعر الإجمالي</th>
+            <th>الحالة</th>
+            <th>إجراءات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- الطلبات ستملأ ديناميكياً -->
+        </tbody>
+      </table>
+    </div>
+    <!-- ملخص الطلبات المنجزة -->
+    <div class="row mb-3">
+      <div class="col-md-6 mb-2">
+        <div class="alert alert-success">
+          <span class="emoji">🚚</span> إجمالي الطلبات التي تم التوصيل بها: <span id="delivered-orders-count">0</span>
+        </div>
+      </div>
+      <div class="col-md-6 mb-2">
+        <div class="alert alert-info">
+          <span class="emoji">💰</span> صافي الأرباح (بدون الشحن): <span id="net-profit">0</span> دج
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="alert alert-primary text-center">
+          <span class="emoji">📊</span> رقم الأعمال (إجمالي كل الأسعار مع الشحن): <span id="turnover-total">0</span> دج
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- مودال التفاصيل -->
+  <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">تفاصيل الطلبية <span class="emoji">🔎</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body" id="order-details-body">
+          <!-- تفاصيل الطلب ستملأ ديناميكياً -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- مودال التعديل -->
+  <div class="modal fade" id="orderEditModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">تعديل الطلبية <span class="emoji">✏️</span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body" id="order-edit-body">
+          <!-- نموذج التعديل سيملأ ديناميكياً -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="main-footer text-center p-3 mt-5">
+    جميع الحقوق محفوظة &copy; <span id="footer-store-name">متجري</span>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script type="module" src="js/server-superbase.js"></script>
+  <script type="module" src="js/auth-guard.js"></script>
+  <script type="module" src="js/orders.js"></script>
+  <script type="module" src="js/logout.js"></script>
+</body>
+</html>

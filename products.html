@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إضافة منتج</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+    }
+    .main-navbar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 4px 20px rgba(102,126,234,0.08);
+      padding: 0.5rem 0;
+    }
+    .main-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .main-navbar .nav-link {
+      color: #fff !important;
+      font-size: 1.1rem;
+      margin-inline: 0.5rem;
+      transition: color 0.2s;
+    }
+    .main-navbar .nav-link.active, .main-navbar .nav-link:hover {
+      color: #fee140 !important;
+      font-weight: bold;
+    }
+    .main-navbar .navbar-toggler {
+      border: none;
+    }
+    .main-navbar .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    @media (max-width: 991px) {
+      .main-navbar .navbar-collapse {
+        background: #667eea;
+        border-radius: 0 0 20px 20px;
+        margin-top: 0.5rem;
+      }
+    }
+    .color-box {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      margin-inline: 5px;
+      border-radius: 4px;
+      vertical-align: middle;
+    }
+    
+    .thumbnail-container {
+      transition: all 0.2s ease;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .thumbnail-container:hover {
+      border-color: #007bff !important;
+      transform: scale(1.1);
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+      cursor: pointer;
+    }
+    
+    .product-images-container {
+      position: relative;
+    }
+    
+    #images-gallery {
+      max-height: 100px;
+      overflow-x: auto;
+    }
+    
+    .image-navigation {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      font-size: 18px;
+      font-weight: bold;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .image-navigation:hover {
+      background: rgba(0, 0, 0, 0.95);
+      transform: translateY(-50%) scale(1.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .image-navigation.prev {
+      left: 10px;
+    }
+    
+    .image-navigation.next {
+      right: 10px;
+    }
+    
+    .image-navigation:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .image-counter {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 10;
+    }
+    
+    .main-image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    
+    .image-zoom-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      font-size: 14px;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .image-zoom-btn:hover {
+      background: rgba(0, 0, 0, 0.95);
+      transform: scale(1.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .fullscreen-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    
+    .fullscreen-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      text-align: center;
+    }
+    
+    .fullscreen-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .fullscreen-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .fullscreen-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+    
+    .fullscreen-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 20px;
+      font-weight: bold;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .fullscreen-nav:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+    }
+    
+    .fullscreen-nav.prev {
+      left: 20px;
+    }
+    
+    .fullscreen-nav.next {
+      right: 20px;
+    }
+    
+    .availability-badge {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+    }
+    
+    .availability-toggle {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.4rem;
+      margin-top: 0.25rem;
+    }
+    
+    /* تحسين مظهر أزرار الإجراءات */
+    .action-buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .action-buttons-container .btn {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    
+    .action-buttons-container .btn i {
+      margin-left: 0.25rem;
+      font-size: 0.7rem;
+    }
+    
+    /* تحسين تأثيرات hover للأزرار */
+    .action-buttons-container .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+    }
+    
+    .action-buttons-container .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .btn {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #e0e7ff;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+    }
+    
+    .table {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .table thead {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.01);
+      transition: all 0.2s ease;
+    }
+    
+    @media (max-width: 768px) {
+      .image-navigation {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+      
+      /* تحسين الجدول للأجهزة المحمولة */
+      .table-responsive {
+        font-size: 0.85rem;
+      }
+      
+      .table td, .table th {
+        padding: 0.5rem 0.25rem;
+        vertical-align: middle;
+      }
+      
+      /* تحسين عرض الصور في الجدول */
+      .table img {
+        width: 35px !important;
+        height: 35px !important;
+      }
+      
+      .image-zoom-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+      }
+      
+      .fullscreen-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .thumbnail-container {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .image-counter {
+        font-size: 10px;
+        padding: 3px 8px;
+      }
+      
+      .fullscreen-close {
+        width: 35px;
+        height: 35px;
+        font-size: 25px;
+      }
+      
+      .image-navigation:hover {
+        transform: translateY(-50%) scale(1.1);
+      }
+      
+      .image-zoom-btn:hover {
+        transform: scale(1.1);
+      }
+      
+      .fullscreen-nav:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+      
+      .fullscreen-close:hover {
+        transform: scale(1.05);
+      }
+      
+      .thumbnail-container:hover {
+        transform: scale(1.05);
+      }
+      
+      .availability-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+      }
+      
+      .availability-toggle {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.3rem;
+      }
+      
+      /* تحسين أزرار الإجراءات للأجهزة المحمولة */
+      .action-buttons-container {
+        gap: 0.2rem;
+      }
+      
+      .action-buttons-container .btn {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+        min-width: 70px;
+      }
+      
+      .action-buttons-container .btn i {
+        font-size: 0.65rem;
+        margin-left: 0.2rem;
+      }
+      
+      /* تحسين تأثيرات hover للأجهزة المحمولة */
+      .action-buttons-container .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      }
+      
+      /* تحسينات إضافية للأجهزة الصغيرة جداً */
+      @media (max-width: 576px) {
+        .action-buttons-container .btn {
+          font-size: 0.65rem;
+          padding: 0.15rem 0.3rem;
+          min-width: 60px;
+        }
+        
+        .action-buttons-container .btn i {
+          font-size: 0.6rem;
+          margin-left: 0.15rem;
+        }
+        
+        .table td, .table th {
+          padding: 0.3rem 0.15rem;
+        }
+        
+        .table img {
+          width: 30px !important;
+          height: 30px !important;
+        }
+        
+        /* تحسين تأثيرات hover للأجهزة الصغيرة جداً */
+        .action-buttons-container .btn:hover {
+          transform: scale(1.03);
+          box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+      }
+    }
+    
+            /* Global padding improvements for all screen sizes */
+        body {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .main-navbar {
+            margin-left: -10px;
+            margin-right: -10px;
+            margin-top: -10px;
+        }
+        
+        .main-footer {
+            background: black !important;
+            color: rgb(255, 255, 255) !important;
+            border-radius: 25px 25px 0 0;
+            box-shadow: 0 -4px 20px rgba(102,126,234,0.08);
+        }
+    
+    .main-header {
+      margin-left: 5px;
+      margin-right: 5px;
+      border-radius: 8px;
+    }
+    
+    /* Container padding improvements */
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* Mobile responsive padding improvements */
+    @media (max-width: 576px) {
+      body {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      
+      .container {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      
+      .main-navbar {
+        margin-left: -12px;
+        margin-right: -12px;
+        margin-top: -12px;
+      }
+      
+      .main-header {
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      
+      .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      
+      .main-navbar {
+        margin-left: -10px;
+        margin-right: -10px;
+        margin-top: -10px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- شريط التنقل الجديد -->
+  <nav class="navbar navbar-expand-lg main-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+        <span style="font-size:1.7rem;">🛒</span> متجر إلكتروني
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><span>🏠</span> لوحة التحكم</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="products.html"><span>🛍️</span> المنتجات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addLandingPage.html"><span>📄</span> صفحات الهبوط</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><span>🏷️</span> التصنيفات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><span>🛒</span> الطلبات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shipping.html"><span>🚚</span> الشحن</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ads.html"><span>📢</span> الإعلانات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sitting.html"><span>⚙️</span> الإعدادات</a>
+          </li>
+          <li class="nav-item">
+                        <a class="nav-link btn btn-light text-dark px-3 py-2 rounded-3 ms-2" href="index.html" style="background-color: #4a4141 !important; border: 1px solid #dee2e6;">
+                            <span>🏪</span> عرض المتجر
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white px-3 py-2 rounded-3 ms-2" href="#" onclick="logout()" style="background-color: #dc3545 !important; border: 1px solid #dc3545;">
+                            <span>🚪</span> تسجيل الخروج
+                        </a>
+                    </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container py-5">
+    <header class="main-header p-3 text-center">
+      <h1 class="h4">🛍️ إدارة المنتجات</h1>
+    </header>
+    <div class="text-end mb-3">
+      <button class="btn btn-success" id="showAddProductFormBtn">➕ إضافة منتج</button>
+    </div>
+    <div id="addProductFormWrapper" style="display:none;">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <!-- نموذج إضافة المنتج (نفس النموذج السابق) -->
+          <!-- اسم المنتج -->
+          <div class="mb-3">
+            <label class="form-label">اسم المنتج</label>
+            <input type="text" class="form-control" id="productName" placeholder="أدخل اسم المنتج">
+          </div>
+          <!-- وصف -->
+          <div class="mb-3">
+            <label class="form-label">وصف المنتج</label>
+            <textarea class="form-control" id="productDesc" rows="3" placeholder="أدخل وصف المنتج"></textarea>
+          </div>
+          <!-- التصنيف -->
+          <div class="mb-3">
+            <label class="form-label">التصنيف</label>
+            <select class="form-select" id="productCategory" required>
+              <option value="">اختر التصنيف</option>
+              <!-- سيتم ملء التصنيفات بواسطة JavaScript -->
+            </select>
+          </div>
+          <!-- صورة -->
+          <div class="mb-3">
+            <label class="form-label">صور المنتج</label>
+            <div class="d-flex mb-2">
+              <input type="file" class="form-control me-2" id="productImage" accept="image/*">
+              <button class="btn btn-outline-primary" onclick="addProductImage()">إضافة صورة</button>
+            </div>
+            <div id="productImagesList" class="d-flex flex-wrap gap-2">
+              <!-- الصور المضافة ستظهر هنا -->
+            </div>
+          </div>
+          <!-- الألوان -->
+          <div class="mb-3">
+            <label class="form-label">الألوان</label>
+            <div class="d-flex mb-2">
+              <input type="text" class="form-control me-2" id="colorName" placeholder="اسم اللون">
+              <input type="color" id="colorPicker" class="form-control form-control-color" value="#000000">
+              <button class="btn btn-outline-success ms-2" onclick="addColor()">إضافة</button>
+            </div>
+            <div id="colorsList" class="d-flex flex-wrap gap-2"></div>
+          </div>
+          <!-- المقاسات -->
+          <div class="mb-3">
+            <label class="form-label">المقاسات</label>
+            <div class="d-flex mb-2">
+              <input type="text" class="form-control me-2" id="sizeInput" placeholder="أدخل مقاس (مثل: S أو 42)">
+              <button class="btn btn-outline-primary ms-2" onclick="addSize()">إضافة</button>
+            </div>
+            <div id="sizesList" class="d-flex flex-wrap gap-2"></div>
+          </div>
+          <!-- السعر الأساسي -->
+          <div class="mb-3">
+            <label class="form-label">السعر الأساسي</label>
+            <input type="number" class="form-control" id="price" placeholder="أدخل السعر الأساسي">
+          </div>
+          <!-- العروض الخاصة -->
+          <div class="mb-3">
+            <label class="form-label">العروض الخاصة</label>
+            <div class="row g-2 align-items-center mb-2">
+              <div class="col-md-4">
+                <input type="number" id="offerQty" class="form-control" placeholder="عدد القطع">
+              </div>
+              <div class="col-md-4">
+                <input type="number" id="offerPrice" class="form-control" placeholder="السعر الإجمالي">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-outline-success w-100" onclick="addOffer()">إضافة عرض</button>
+              </div>
+            </div>
+            <div id="offersList" class="d-flex flex-column gap-2"></div>
+          </div>
+          <!-- بيكسل -->
+          <div class="mb-3">
+            <label class="form-label">اختر بيكسل</label>
+            <select class="form-select" id="pixelSelect">
+              <option value="">اختر البيكسل</option>
+              <option value="pixel1">Pixel 1</option>
+              <option value="pixel2">Pixel 2</option>
+              <option value="pixel3">Pixel 3</option>
+            </select>
+          </div>
+          <!-- حالة التوفر -->
+          <div class="mb-3">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="productAvailable" checked>
+              <label class="form-check-label" for="productAvailable">
+                المنتج متوفر
+              </label>
+            </div>
+          </div>
+          <!-- زر النشر -->
+          <div class="text-end">
+            <button class="btn btn-success" onclick="publishProduct()">نشر المنتج</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- جدول المنتجات -->
+    <div class="card shadow">
+      <div class="card-body">
+        <h5 class="mb-3">قائمة المنتجات</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered text-center align-middle" id="productsTable">
+            <thead class="table-dark">
+              <tr>
+                <th>الصورة</th>
+                <th>اسم المنتج</th>
+                <th>التصنيف</th>
+                <th>السعر</th>
+                <th>التوفر</th>
+                <th>المزيد</th>
+                <th>الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- المنتجات ستملأ من جافاسكريبت -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- مودال تفاصيل المنتج -->
+    <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">تفاصيل المنتج</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+          </div>
+          <div class="modal-body" id="productDetailsBody">
+            <!-- تفاصيل المنتج ستملأ من جافاسكريبت -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- مودال نجاح النشر -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">✅ تم نشر المنتج</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+          </div>
+          <div class="modal-body">
+            <p>تمت إضافة المنتج بنجاح!</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- مودال العرض بالحجم الكامل -->
+    <div class="fullscreen-modal" id="fullscreen-modal">
+      <div class="fullscreen-content">
+        <button class="fullscreen-close" id="fullscreen-close">&times;</button>
+        <img class="fullscreen-image" id="fullscreen-image" src="" alt="صورة المنتج">
+        <button class="fullscreen-nav prev" id="fullscreen-prev">‹</button>
+        <button class="fullscreen-nav next" id="fullscreen-next">›</button>
+      </div>
+    </div>
+  </main>
+  <footer class="main-footer text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">
+        <i class="fas fa-heart text-danger me-1"></i>
+        جميع الحقوق محفوظة © 2024 متجر إلكتروني
+      </p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/server-superbase.js"></script>
+  <script type="module" src="js/auth-guard.js"></script>
+  <script type="module" src="js/products.js"></script>
+  <script type="module" src="js/logout.js"></script>
+</body>
+</html>

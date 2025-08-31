@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إدارة الشحن</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+      min-height: 100vh;
+    }
+    
+    /* تحسينات للشاشات الصغيرة جداً */
+    @media (max-width: 576px) {
+      .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      
+      .navbar-brand {
+        font-size: 1.2rem !important;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem !important;
+        padding: 0.5rem 0.3rem !important;
+      }
+      
+      .btn {
+        font-size: 0.85rem;
+        padding: 0.375rem 0.75rem;
+      }
+      
+      .table {
+        font-size: 0.8rem;
+      }
+      
+      .table th,
+      .table td {
+        padding: 0.5rem 0.3rem;
+      }
+      
+      .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+      }
+      
+      .modal-body {
+        padding: 1rem;
+      }
+      
+      .form-control {
+        font-size: 0.9rem;
+      }
+      
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn-success {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+    
+    /* تحسينات للشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .main-navbar .navbar-brand {
+        font-size: 1.3rem;
+      }
+      
+      .main-navbar .nav-link {
+        font-size: 1rem;
+        margin-inline: 0.3rem;
+      }
+      
+      .table-responsive {
+        font-size: 0.85rem;
+      }
+      
+      .btn {
+        margin-bottom: 0.5rem;
+      }
+      
+      .navbar-nav .btn {
+        margin: 0.25rem 0;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .modal-dialog {
+        max-width: 95%;
+      }
+      
+      .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: stretch !important;
+      }
+      
+      .btn-success {
+        width: 100%;
+      }
+    }
+    
+    /* تحسينات للشاشات المتوسطة */
+    @media (max-width: 991px) {
+      .main-navbar .navbar-collapse {
+        background: #667eea;
+        border-radius: 0 0 20px 20px;
+        margin-top: 0.5rem;
+      }
+    }
+    
+    /* تحسينات للشاشات الكبيرة */
+    @media (min-width: 992px) {
+      .container {
+        max-width: 1200px;
+      }
+      
+      .table {
+        font-size: 1rem;
+      }
+    }
+    
+    /* تحسينات عامة للاستجابة */
+    .main-navbar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 4px 20px rgba(102,126,234,0.08);
+      padding: 0.5rem 0;
+    }
+    
+    .main-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .main-navbar .nav-link {
+      color: #fff !important;
+      font-size: 1.1rem;
+      margin-inline: 0.5rem;
+      transition: color 0.2s;
+    }
+    
+    .main-navbar .nav-link.active, 
+    .main-navbar .nav-link:hover {
+      color: #fee140 !important;
+      font-weight: bold;
+    }
+    
+    .main-navbar .navbar-toggler {
+      border: none;
+    }
+    
+    .main-navbar .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    
+    .table {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+    }
+    
+    .table thead {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.01);
+      transition: all 0.2s ease;
+    }
+    
+    .btn {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .form-control {
+      border-radius: 8px;
+      border: 1px solid #e0e7ff;
+    }
+    
+    .form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+    }
+    
+    .main-footer {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 25px 25px 0 0;
+      box-shadow: 0 -4px 20px rgba(102,126,234,0.08);
+    }
+    
+    .modal-content {
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .modal-header {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px 15px 0 0;
+    }
+    
+    /* تحسين عرض الجدول للشاشات الصغيرة */
+    @media (max-width: 767px) {
+      .table-responsive {
+        border-radius: 15px;
+        overflow: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .table {
+        min-width: 600px;
+        white-space: nowrap;
+      }
+      
+      .table th,
+      .table td {
+        min-width: 120px;
+        padding: 0.75rem 0.5rem;
+        vertical-align: middle;
+      }
+      
+      .table th:nth-child(1),
+      .table td:nth-child(1) {
+        min-width: 100px;
+        position: sticky;
+        left: 0;
+        z-index: 1;
+      }
+      
+      .table th:nth-child(2),
+      .table td:nth-child(2),
+      .table th:nth-child(3),
+      .table td:nth-child(3) {
+        min-width: 140px;
+      }
+      
+      .table th:nth-child(4),
+      .table td:nth-child(4) {
+        min-width: 120px;
+      }
+      
+      .table th:nth-child(5),
+      .table td:nth-child(5) {
+        min-width: 100px;
+      }
+      
+      .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+      
+      /* تحسين عرض النص في الخلايا */
+      .table td {
+        word-break: break-word;
+        white-space: normal;
+        max-width: 150px;
+      }
+    }
+    
+    /* تحسينات إضافية للشاشات الصغيرة جداً */
+    @media (max-width: 576px) {
+      .table-responsive {
+        margin: 0 -10px;
+        padding: 0 10px;
+      }
+      
+      .table {
+        min-width: 500px;
+      }
+      
+      .table th,
+      .table td {
+        min-width: 100px;
+        padding: 0.5rem 0.3rem;
+        font-size: 0.8rem;
+      }
+      
+      .table th:nth-child(1),
+      .table td:nth-child(1) {
+        min-width: 80px;
+      }
+      
+      .table th:nth-child(2),
+      .table td:nth-child(2),
+      .table th:nth-child(3),
+      .table td:nth-child(3) {
+        min-width: 120px;
+      }
+      
+      .table th:nth-child(4),
+      .table td:nth-child(4) {
+        min-width: 100px;
+      }
+      
+      .table th:nth-child(5),
+      .table td:nth-child(5) {
+        min-width: 80px;
+      }
+    }
+    
+    /* تحسين الفوتر */
+    .main-footer {
+            background: black !important;
+            color: rgb(255, 255, 255) !important;
+            border-radius: 25px 25px 0 0;
+            box-shadow: 0 -4px 20px rgba(102,126,234,0.08);
+        }
+    
+    @media (max-width: 576px) {
+      .main-footer {
+        font-size: 0.9rem;
+        padding: 1rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- شريط التنقل الجديد -->
+  <nav class="navbar navbar-expand-lg main-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+        <span style="font-size:1.7rem;">🛒</span> متجر إلكتروني
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><span>🏠</span> لوحة التحكم</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><span>🛍️</span> المنتجات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addLandingPage.html"><span>📄</span> صفحات الهبوط</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><span>🏷️</span> التصنيفات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><span>🛒</span> الطلبات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="shipping.html"><span>🚚</span> الشحن</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ads.html"><span>📢</span> الإعلانات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sitting.html"><span>⚙️</span> الإعدادات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-light text-dark px-3 py-2 rounded-3 ms-2" href="index.html" style="background-color: #4a4141 !important; border: 1px solid #dee2e6;">
+              <span>🏪</span> عرض المتجر
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-danger text-white px-3 py-2 rounded-3 ms-2" href="#" onclick="logout()" style="background-color: #dc3545 !important; border: 1px solid #dc3545;">
+              <span>🚪</span> تسجيل الخروج
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <main class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3>🚚 إدارة الشحن</h3>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addStateModal">➕ إضافة ولاية</button>
+    </div>
+    
+    <!-- جدول عرض الولايات -->
+    <div class="table-responsive">
+      <table class="table table-bordered text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>🏙️ الولاية</th>
+            <th>🏠 سعر التوصيل للمنزل</th>
+            <th>🏢 سعر التوصيل للمكتب</th>
+            <th>✅ التوصيل مفعل؟</th>
+            <th>⚙️ إجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="statesTableBody">
+          <!-- بيانات الولايات تظهر هنا -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+  
+  <!-- نافذة الإضافة -->
+  <div class="modal fade" id="addStateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <h5>➕ إضافة ولاية جديدة</h5>
+        <form id="addStateForm">
+          <input type="text" class="form-control my-2" placeholder="اسم الولاية" id="stateName" required />
+          <input type="number" class="form-control my-2" placeholder="سعر التوصيل للمنزل" id="homePrice" required />
+          <input type="number" class="form-control my-2" placeholder="سعر التوصيل للمكتب" id="officePrice" required />
+          <button type="submit" class="btn btn-primary w-100">💾 إضافة</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="main-footer text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">
+        <i class="fas fa-heart text-danger me-1"></i>
+        جميع الحقوق محفوظة © 2024 متجر إلكتروني
+      </p>
+    </div>
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/server-superbase.js"></script>
+  <script type="module" src="js/auth-guard.js"></script>
+  <script type="module" src="js/shipping.js"></script>
+  <script type="module" src="js/logout.js"></script>
+</body>
+</html>

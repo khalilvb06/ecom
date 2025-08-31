@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إعدادات المتجر</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+    }
+    .main-navbar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 4px 20px rgba(102,126,234,0.08);
+      padding: 0.5rem 0;
+    }
+    .main-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .main-navbar .nav-link {
+      color: #fff !important;
+      font-size: 1.1rem;
+      margin-inline: 0.5rem;
+      transition: color 0.2s;
+    }
+    .main-navbar .nav-link.active, .main-navbar .nav-link:hover {
+      color: #fee140 !important;
+      font-weight: bold;
+    }
+    .main-navbar .navbar-toggler {
+      border: none;
+    }
+    .main-navbar .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    @media (max-width: 991px) {
+      .main-navbar .navbar-collapse {
+        background: #667eea;
+        border-radius: 0 0 20px 20px;
+        margin-top: 0.5rem;
+      }
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .btn {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #e0e7ff;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+    }
+    .form-control-color {
+      width: 60px;
+      height: 40px;
+      border-radius: 8px;
+      border: 2px solid #e0e7ff;
+    }
+    .form-control-color:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+    }
+    .alert {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .main-footer {
+            background: black !important;
+            color: rgb(255, 255, 255) !important;
+            border-radius: 25px 25px 0 0;
+            box-shadow: 0 -4px 20px rgba(102,126,234,0.08);
+        }
+    
+    @media (max-width: 767px) {
+      .form-control-color {
+        width: 50px;
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- شريط التنقل الجديد -->
+  <nav class="navbar navbar-expand-lg main-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+        <span style="font-size:1.7rem;">🛒</span> متجر إلكتروني
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><span>🏠</span> لوحة التحكم</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><span>🛍️</span> المنتجات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addLandingPage.html"><span>📄</span> صفحات الهبوط</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><span>🏷️</span> التصنيفات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><span>🛒</span> الطلبات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shipping.html"><span>🚚</span> الشحن</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ads.html"><span>📢</span> الإعلانات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="sitting.html"><span>⚙️</span> الإعدادات</a>
+          </li>
+          <li class="nav-item">
+                        <a class="nav-link btn btn-light text-dark px-3 py-2 rounded-3 ms-2" href="index.html" style="background-color: #4a4141 !important; border: 1px solid #dee2e6;">
+                            <span>🏪</span> عرض المتجر
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger text-white px-3 py-2 rounded-3 ms-2" href="#" onclick="logout()" style="background-color: #dc3545 !important; border: 1px solid #dc3545;">
+                            <span>🚪</span> تسجيل الخروج
+                        </a>
+                    </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="main-header p-3 text-center">
+    <h1 class="h4">⚙️ إعدادات المتجر</h1>
+  </header>
+  <main class="container py-5">
+    <div class="alert alert-success d-none" id="saved-alert">✅ تم حفظ الإعدادات بنجاح!</div>
+    <div class="card shadow">
+      <div class="card-body">
+        <form onsubmit="event.preventDefault(); saveSettings();">
+          <div class="mb-3">
+            <label for="store-name" class="form-label">اسم المتجر</label>
+            <input type="text" class="form-control" id="store-name" required>
+          </div>
+          <div class="mb-3">
+            <label for="store-logo" class="form-label">شعار المتجر</label>
+            <input type="file" class="form-control" id="store-logo" accept="image/*" onchange="previewLogo(this)">
+            <img id="logo-preview" src="" alt="معاينة الشعار" class="mt-2" style="max-width:80px; max-height:80px; display:none; border-radius: 8px; border: 2px solid #e0e7ff;">
+          </div>
+          <div class="mb-3">
+            <label for="main-header" class="form-label">لون الهيدر والفوتر</label>
+            <input type="color" class="form-control form-control-color" id="main-header" value="#007bff">
+          </div>
+          <div class="mb-3">
+            <label for="main-btn" class="form-label">لون خلفية الأزرار</label>
+            <input type="color" class="form-control form-control-color" id="main-btn" value="#007bff" onchange="updateButtonColor()">
+          </div>
+          <div class="mb-3">
+            <label for="main-btn-text" class="form-label">لون كتابة الأزرار</label>
+            <input type="color" class="form-control form-control-color" id="main-btn-text" value="#ffffff" onchange="updateButtonColor()">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">معاينة الأزرار</label>
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-main" style="pointer-events: none;">زر تجريبي</button>
+              <button class="btn btn-main" style="pointer-events: none;">زر آخر</button>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="main-text" class="form-label">لون النصوص العامة</label>
+            <input type="color" class="form-control form-control-color" id="main-text" value="#222222">
+          </div>
+          
+          <!-- قسم وصف المتجر -->
+          <div class="card mt-4 mb-3">
+            <div class="card-header bg-light">
+              <h5 class="mb-0"><i class="fas fa-info-circle"></i> وصف المتجر</h5>
+            </div>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="store-description" class="form-label">
+                  <i class="fas fa-edit"></i> وصف المتجر (سيظهر في صفحة "عن المتجر")
+                </label>
+                <textarea class="form-control" id="store-description" rows="6" 
+                          placeholder="اكتب وصفاً شاملاً عن متجرك، تاريخه، رؤيته، قيمه، والخدمات التي يقدمها..."></textarea>
+                <div class="form-text">
+                  <i class="fas fa-lightbulb"></i>
+                  <strong>نصيحة:</strong> اكتب وصفاً جذاباً ومفصلاً عن متجرك لمساعدة العملاء على فهم هويتك وخدماتك بشكل أفضل.
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- قسم وسائل التواصل الاجتماعي -->
+          <div class="card mt-4 mb-3">
+            <div class="card-header bg-light">
+              <h5 class="mb-0"><i class="fas fa-share-alt"></i> روابط وسائل التواصل الاجتماعي</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="facebook-url" class="form-label">
+                    <i class="fab fa-facebook text-primary"></i> رابط صفحة الفيسبوك
+                  </label>
+                  <input type="url" class="form-control" id="facebook-url" placeholder="https://facebook.com/yourpage">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="instagram-url" class="form-label">
+                    <i class="fab fa-instagram text-danger"></i> رابط حساب الانستقرام
+                  </label>
+                  <input type="url" class="form-control" id="instagram-url" placeholder="https://instagram.com/yourusername">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="whatsapp-url" class="form-label">
+                    <i class="fab fa-whatsapp text-success"></i> رقم الواتساب
+                  </label>
+                  <input type="text" class="form-control" id="whatsapp-url" placeholder="+213XXXXXXXXX">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="tiktok-url" class="form-label">
+                    <i class="fab fa-tiktok text-dark"></i> رابط حساب التيك توك
+                  </label>
+                  <input type="url" class="form-control" id="tiktok-url" placeholder="https://tiktok.com/@yourusername">
+                </div>
+              </div>
+              <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <strong>ملاحظة:</strong> إذا لم تضع رابطاً لموقع معين، لن تظهر أيقونته في الفوتر.
+              </div>
+            </div>
+          </div>
+          
+          <!-- قسم إعدادات البيكسالات -->
+          <div class="card mt-4 mb-3">
+            <div class="card-header bg-light">
+              <h5 class="mb-0"><i class="fas fa-chart-line"></i> إعدادات البيكسالات</h5>
+            </div>
+            <div class="card-body">
+                             <div class="mb-3">
+                 <label for="main-pixel" class="form-label">
+                   <i class="fas fa-bullseye"></i> البيكسل الرئيسي للمتجر
+                 </label>
+                 <select class="form-select" id="main-pixel" onchange="showPixelInfo(this)">
+                   <option value="">اختر البيكسل الرئيسي</option>
+                 </select>
+                 <div class="form-text">
+                   <i class="fas fa-lightbulb"></i>
+                   <strong>نصيحة:</strong> اختر البيكسل الذي تريد استخدامه لتتبع النشاط في متجرك.
+                 </div>
+                 <div id="pixel-info" class="mt-2 p-2 bg-light rounded" style="display: none;">
+                   <small class="text-muted">
+                     <i class="fas fa-info-circle"></i>
+                     <span id="pixel-info-text"></span>
+                   </small>
+                 </div>
+               </div>
+              <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>تنبيه:</strong> تأكد من أن البيكسل المختار صالح ومفعل لتتبع الأحداث بشكل صحيح.
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <button type="submit" class="btn btn-main" id="save-settings-btn">💾 حفظ الإعدادات</button>
+            <a href="dashboard.html" class="btn btn-secondary ms-2">🏠 عودة للرئيسية</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer class="main-footer text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">
+        <i class="fas fa-heart text-danger me-1"></i>
+        جميع الحقوق محفوظة © 2024 متجر إلكتروني
+      </p>
+    </div>
+  </footer>
+
+  <!-- مودل نجاح حفظ الإعدادات -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="mb-3">
+            <span style="font-size: 4rem;">✅</span>
+          </div>
+          <h5 class="modal-title" id="successModalLabel">تم حفظ الإعدادات بنجاح!</h5>
+          <p class="text-muted mt-2">تم تحديث إعدادات المتجر بنجاح</p>
+        </div>
+        <div class="modal-footer border-0 justify-content-center">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">حسناً</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودل خطأ -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="mb-3">
+            <span style="font-size: 4rem;">❌</span>
+          </div>
+          <h5 class="modal-title" id="errorModalLabel">حدث خطأ!</h5>
+          <p class="text-muted mt-2 error-message">حدث خطأ أثناء حفظ الإعدادات</p>
+        </div>
+        <div class="modal-footer border-0 justify-content-center">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">حسناً</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script type="module" src="js/server-superbase.js"></script>
+  <script type="module" src="js/auth-guard.js"></script>
+  <script type="module" src="js/settings.js"></script>
+  <script type="module" src="js/logout.js"></script>
+  
+</body>
+</html> 

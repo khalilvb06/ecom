@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إضافة صفحة هبوط</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+    }
+    .main-navbar {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 4px 20px rgba(102,126,234,0.08);
+      padding: 0.5rem 0;
+    }
+    .main-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .main-navbar .nav-link {
+      color: #fff !important;
+      font-size: 1.1rem;
+      margin-inline: 0.5rem;
+      transition: color 0.2s;
+    }
+    .main-navbar .nav-link.active, .main-navbar .nav-link:hover {
+      color: #fee140 !important;
+      font-weight: bold;
+    }
+    .main-navbar .navbar-toggler {
+      border: none;
+    }
+    .main-navbar .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    @media (max-width: 991px) {
+      .main-navbar .navbar-collapse {
+        background: #667eea;
+        border-radius: 0 0 20px 20px;
+        margin-top: 0.5rem;
+      }
+    }
+    
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      border: none;
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .btn {
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #e0e7ff;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+    }
+    
+    .table {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .table thead {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+      transform: scale(1.01);
+      transition: all 0.2s ease;
+    }
+    
+    .landing-page-image {
+      width: 100px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #e0e7ff;
+    }
+    
+    .landing-page-image:hover {
+      border-color: #667eea;
+      transform: scale(1.05);
+      transition: all 0.2s ease;
+    }
+    
+    @media (max-width: 768px) {
+      .table-responsive {
+        font-size: 0.85rem;
+      }
+      
+      .table td, .table th {
+        padding: 0.5rem 0.25rem;
+        vertical-align: middle;
+      }
+      
+      .landing-page-image {
+        width: 60px !important;
+        height: 40px !important;
+      }
+    }
+    
+    .main-footer {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 25px 25px 0 0;
+      box-shadow: 0 -4px 20px rgba(102,126,234,0.08);
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- شريط التنقل الجديد -->
+  <nav class="navbar navbar-expand-lg main-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+        <span style="font-size:1.7rem;">🛒</span> متجر إلكتروني
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><span>🏠</span> لوحة التحكم</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><span>🛍️</span> المنتجات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><span>🏷️</span> التصنيفات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="addLandingPage.html"><span>📄</span> صفحات الهبوط</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><span>🛒</span> الطلبات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shipping.html"><span>🚚</span> الشحن</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ads.html"><span>📢</span> الإعلانات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sitting.html"><span>⚙️</span> الإعدادات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-light text-dark px-3 py-2 rounded-3 ms-2" href="index.html" style="background-color: #4a4141 !important; border: 1px solid #dee2e6;">
+              <span>🏪</span> عرض المتجر
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-danger text-white px-3 py-2 rounded-3 ms-2" href="#" onclick="logout()" style="background-color: #dc3545 !important; border: 1px solid #dc3545;">
+              <span>🚪</span> تسجيل الخروج
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container py-5">
+    <header class="main-header p-3 text-center">
+      <h1 class="h4">📄 إدارة صفحات الهبوط</h1>
+    </header>
+    <div class="text-end mb-3">
+      <button class="btn btn-success" id="showAddLandingPageFormBtn">➕ إضافة صفحة هبوط</button>
+    </div>
+    <div id="addLandingPageFormWrapper" style="display:none;">
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <!-- نموذج إضافة صفحة الهبوط -->
+          <!-- اسم صفحة الهبوط -->
+          <div class="mb-3">
+            <label class="form-label">اسم صفحة الهبوط</label>
+            <input type="text" class="form-control" id="landingPageName" placeholder="أدخل اسم صفحة الهبوط">
+          </div>
+          <!-- الصور -->
+          <div class="mb-3">
+            <label class="form-label">صور صفحة الهبوط</label>
+            <div class="d-flex mb-2">
+              <input type="file" class="form-control me-2" id="landingPageImage" accept="image/*">
+              <button class="btn btn-outline-primary" onclick="addLandingPageImage()">إضافة صورة</button>
+            </div>
+            <div id="landingPageImagesList" class="d-flex flex-wrap gap-2">
+              <!-- الصور المضافة ستظهر هنا -->
+            </div>
+          </div>
+          <!-- أبعاد عرض الصورة -->
+          <div class="mb-3">
+            <label class="form-label">أبعاد عرض الصورة</label>
+            <select class="form-select" id="imageWidth">
+              <option value="">اختر عرض الصورة</option>
+              <option value="100%">عرض كامل (100%)</option>
+              <option value="75%">عرض 75%</option>
+              <option value="50%">عرض 50%</option>
+              <option value="25%">عرض 25%</option>
+              <option value="300px">عرض ثابت 300px</option>
+              <option value="400px">عرض ثابت 400px</option>
+              <option value="500px">عرض ثابت 500px</option>
+              <option value="600px">عرض ثابت 600px</option>
+            </select>
+          </div>
+          <!-- الألوان -->
+          <div class="mb-3">
+            <label class="form-label">الألوان</label>
+            <div class="d-flex mb-2">
+              <input type="text" class="form-control me-2" id="colorName" placeholder="اسم اللون">
+              <input type="color" id="colorPicker" class="form-control form-control-color" value="#000000">
+              <button class="btn btn-outline-success ms-2" onclick="addColor()">إضافة</button>
+            </div>
+            <div id="colorsList" class="d-flex flex-wrap gap-2"></div>
+          </div>
+          <!-- المقاسات -->
+          <div class="mb-3">
+            <label class="form-label">المقاسات</label>
+            <div class="d-flex mb-2">
+              <input type="text" class="form-control me-2" id="sizeInput" placeholder="أدخل مقاس (مثل: S أو 42)">
+              <button class="btn btn-outline-primary ms-2" onclick="addSize()">إضافة</button>
+            </div>
+            <div id="sizesList" class="d-flex flex-wrap gap-2"></div>
+          </div>
+          <!-- السعر الأساسي -->
+          <div class="mb-3">
+            <label class="form-label">السعر الأساسي</label>
+            <input type="number" class="form-control" id="price" placeholder="أدخل السعر الأساسي">
+          </div>
+          <!-- العروض الخاصة -->
+          <div class="mb-3">
+            <label class="form-label">العروض الخاصة</label>
+            <div class="row g-2 align-items-center mb-2">
+              <div class="col-md-4">
+                <input type="number" id="offerQty" class="form-control" placeholder="عدد القطع">
+              </div>
+              <div class="col-md-4">
+                <input type="number" id="offerPrice" class="form-control" placeholder="السعر الإجمالي">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-outline-success w-100" onclick="addOffer()">إضافة عرض</button>
+              </div>
+            </div>
+            <div id="offersList" class="d-flex flex-column gap-2"></div>
+          </div>
+          <!-- التصنيف -->
+          <div class="mb-3">
+            <label class="form-label">اختر التصنيف</label>
+            <select class="form-select" id="categorySelect">
+              <option value="">اختر التصنيف</option>
+            </select>
+          </div>
+          <!-- بيكسل -->
+          <div class="mb-3">
+            <label class="form-label">اختر بيكسل</label>
+            <select class="form-select" id="pixelSelect">
+              <option value="">اختر البيكسل</option>
+            </select>
+          </div>
+          <!-- حالة التوفر -->
+          <div class="mb-3">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="landingPageAvailable" checked>
+              <label class="form-check-label" for="landingPageAvailable">
+                صفحة الهبوط متاحة
+              </label>
+            </div>
+          </div>
+          <!-- زر النشر -->
+          <div class="text-end">
+            <button class="btn btn-success" onclick="publishLandingPage()">نشر صفحة الهبوط</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- جدول صفحات الهبوط -->
+    <div class="card shadow">
+      <div class="card-body">
+        <h5 class="mb-3">قائمة صفحات الهبوط</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered text-center align-middle" id="landingPagesTable">
+            <thead class="table-dark">
+              <tr>
+                <th>الصورة</th>
+                <th>اسم صفحة الهبوط</th>
+                <th>التصنيف</th>
+                <th>عرض الصورة</th>
+                <th>السعر</th>
+                <th>التوفر</th>
+                <th>الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- صفحات الهبوط ستملأ من جافاسكريبت -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- مودال نجاح النشر -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title">✅ تم نشر صفحة الهبوط</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+          </div>
+          <div class="modal-body">
+            <p>تمت إضافة صفحة الهبوط بنجاح!</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- مودال تعديل صفحة الهبوط -->
+    <div class="modal fade" id="editLandingPageModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-info text-white">
+            <h5 class="modal-title">✏️ تعديل صفحة الهبوط</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editLandingPageForm">
+              <input type="hidden" id="editLandingPageId">
+              <!-- اسم صفحة الهبوط -->
+              <div class="mb-3">
+                <label class="form-label">اسم صفحة الهبوط</label>
+                <input type="text" class="form-control" id="editLandingPageName" placeholder="أدخل اسم صفحة الهبوط">
+              </div>
+              <!-- صور صفحة الهبوط -->
+              <div class="mb-3">
+                <label class="form-label">صور صفحة الهبوط</label>
+                <div class="d-flex mb-2">
+                  <input type="file" class="form-control me-2" id="editLandingPageImage" accept="image/*">
+                  <button type="button" class="btn btn-outline-primary" onclick="addEditLandingPageImage()">إضافة صورة</button>
+                </div>
+                <div id="editLandingPageImagesList" class="d-flex flex-wrap gap-2"></div>
+              </div>
+              <!-- أبعاد عرض الصورة -->
+              <div class="mb-3">
+                <label class="form-label">أبعاد عرض الصورة</label>
+                <select class="form-select" id="editImageWidth">
+                  <option value="">اختر عرض الصورة</option>
+                  <option value="100%">عرض كامل (100%)</option>
+                  <option value="75%">عرض 75%</option>
+                  <option value="50%">عرض 50%</option>
+                  <option value="25%">عرض 25%</option>
+                  <option value="300px">عرض ثابت 300px</option>
+                  <option value="400px">عرض ثابت 400px</option>
+                  <option value="500px">عرض ثابت 500px</option>
+                  <option value="600px">عرض ثابت 600px</option>
+                </select>
+              </div>
+              <!-- الألوان -->
+              <div class="mb-3">
+                <label class="form-label">الألوان</label>
+                <div class="d-flex mb-2">
+                  <input type="text" class="form-control me-2" id="editColorName" placeholder="اسم اللون">
+                  <input type="color" id="editColorPicker" class="form-control form-control-color" value="#000000">
+                  <button type="button" class="btn btn-outline-success ms-2" onclick="addEditColor()">إضافة</button>
+                </div>
+                <div id="editColorsList" class="d-flex flex-wrap gap-2"></div>
+              </div>
+              <!-- المقاسات -->
+              <div class="mb-3">
+                <label class="form-label">المقاسات</label>
+                <div class="d-flex mb-2">
+                  <input type="text" class="form-control me-2" id="editSizeInput" placeholder="أدخل مقاس (مثل: S أو 42)">
+                  <button type="button" class="btn btn-outline-primary ms-2" onclick="addEditSize()">إضافة</button>
+                </div>
+                <div id="editSizesList" class="d-flex flex-wrap gap-2"></div>
+              </div>
+              <!-- السعر الأساسي -->
+              <div class="mb-3">
+                <label class="form-label">السعر الأساسي</label>
+                <input type="number" class="form-control" id="editPrice" placeholder="أدخل السعر الأساسي">
+              </div>
+              <!-- العروض الخاصة -->
+              <div class="mb-3">
+                <label class="form-label">العروض الخاصة</label>
+                <div class="row g-2 align-items-center mb-2">
+                  <div class="col-md-4">
+                    <input type="number" id="editOfferQty" class="form-control" placeholder="عدد القطع">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="number" id="editOfferPrice" class="form-control" placeholder="السعر الإجمالي">
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="btn btn-outline-success w-100" onclick="addEditOffer()">إضافة عرض</button>
+                  </div>
+                </div>
+                <div id="editOffersList" class="d-flex flex-column gap-2"></div>
+              </div>
+              <!-- التصنيف -->
+              <div class="mb-3">
+                <label class="form-label">اختر التصنيف</label>
+                <select class="form-select" id="editCategorySelect">
+                  <option value="">اختر التصنيف</option>
+                </select>
+              </div>
+              <!-- بيكسل -->
+              <div class="mb-3">
+                <label class="form-label">اختر بيكسل</label>
+                <select class="form-select" id="editPixelSelect">
+                  <option value="">اختر البيكسل</option>
+                </select>
+              </div>
+              <!-- حالة التوفر -->
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="editLandingPageAvailable" checked>
+                  <label class="form-check-label" for="editLandingPageAvailable">
+                    صفحة الهبوط متاحة
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+            <button type="button" class="btn btn-success" onclick="updateLandingPage()">حفظ التعديلات</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="main-footer text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">
+        <i class="fas fa-heart text-danger me-1"></i>
+        جميع الحقوق محفوظة © 2024 متجر إلكتروني
+      </p>
+    </div>
+  </footer>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script type="module" src="js/server-superbase.js">
+  </script>
+  <script type="module" src="js/auth-guard.js"></script>
+  <script type="module" src="js/addLandingPage.js"></script>
+  
+  <script type="module" src="js/logout.js"></script>
+</body>
+</html> 
